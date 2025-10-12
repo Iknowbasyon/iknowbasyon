@@ -63,5 +63,5 @@ signupForm.onsubmit = function(e) {
 // landing page after login/signup
 document.getElementById('login-form').addEventListener('submit', function(event) {
   event.preventDefault();
-  window.location.href = 'landing.html'; // Redirect to landing page
+  window.location.href = '/iknowbasyon/landing/landing.html'; // Redirect to landing page
 });
