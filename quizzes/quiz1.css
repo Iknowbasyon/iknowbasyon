@@ -121,3 +121,23 @@ main {
     max-height: 400px;
   }
 }
+
+.crossword-wrapper {
+  width: 100%;
+  max-width: 795px;
+  margin: 0 auto;
+  /* Add space at the top for mobile ads */
+  padding-top: 0;
+}
+
+@media (max-width: 600px) {
+  .crossword-wrapper {
+    height: 90vh;
+    padding-top: 60px; /* Adjust if ads appear at the top */
+  }
+  .crossword-wrapper iframe {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    height: 90vh !important;
+  }
+}
