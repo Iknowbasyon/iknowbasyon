@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mobile Registration Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="registration.css">
+</head>
+<body>
+  <div class="form-container">
+    <form id="registrationForm" autocomplete="off">
+      <h2>Registration form</h2>
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" name="firstName" required>
+      </div>
+      <div class="form-group">
+        <label for="surname">Surname</label>
+        <input type="text" id="surname" name="surname" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Section</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <button type="submit" class="btn">Register</button>
+      <div id="message"></div>
+    </form>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I'Know'basyon – Multiple Choice Quiz</title>
+  <link rel="stylesheet" href="Pquiz1.css">
+</head>
+<body>
+  <header>
+    <button class="back-btn" type="button" onclick="window.history.back()" aria-label="Bumalik">← Bumalik</button>
+    <h1>I<span style="font-style: italic;"> 'Know' </span>basyon</h1>
+  </header>
+
+  <button id="start-btn" class="start-btn">Start Quiz</button>
+
+  <main>
+    <!-- Reading passage FIRST (with Next button) -->
+    <section id="reading-section" class="reading-section">
+      <div class="reading-paragraph">
+        <div class="reading-title"><strong>Panuto: Basahin nang mabuti ang Artikulo sa ibaba. Sagutin ang mga tanong batay sa iyong pagkaunawa sa teksto.</strong></div>
+        <p>
+          <strong>ARTIFICIAL Intelligence (AI)</strong> ang ikatlong antas ng computing.
+        </p>
+        <p>
+          Unang antas ang pag-memorya ng chips sa sinulat­, kinuwenta, nilarawan o isinamusika ng may akda. Pinagaan nito ang bahagi ng utak ng tao na nagsasaulo ng datos. Napadali ang gawaing sining at agham: pag-drawing ng car­toons, pagretoke ng litrato, pagdisenyo ng damit at bahay, pag-asinta ng baril, at pagsaliksik ng gamot at outer space.
+        </p>
+        <p>
+          Ikalawang antas ang Wi-Fi na nagbunsod ng social media. Nakakapag-usap ang tao nang sabay-sabay mula sa iba’t ibang bahagi ng mundo. Nakakapagpalitan ng audio at video. Dagliang naipapaabot ang balita at babala. Napa­pabilis ang serbisyo ng gobyerno: pag-issue ng permits, reseta sa gamot, ayuda at responde sa sakuna. Napa­bilis din ang pagsuri ng customer sa produkto online, pag-order at pag-deliver.
+        </p>
+        <p>
+          Sa AI hindi lang memorya at komunikasyon ang naga­­gawa. Gamit ang “machine learning”, nilalamanan ng tril­yun-trilyong datos ang memory chips. Pina-aanalisa ito sa robot para lumikha ng bagong kaalaman. Kung ang lumang robot ay kayang magtahi, assemble ng kagamitan o hugas ng plato, ang AI robot ay kayang “mag-isip”. Kaya natalo ng robot ang world champion sa kumplikadong larong Go. Wala na ring chess grandmaster na makatatalo sa robot. Makagagawa ang AI robot ng iba pang robot at mapapasahan ng dagdag pang “talino”.
+        </p>
+        <p>
+          Ang nakatatakot sa AI ay kung mapasakamay ito ng malulupit na gobyerno o kompanya. Gagamitin ang robots pansupil sa tao. Ipapa-zap sa robots ang mga kritiko at malayang namamahayag. Tulad ng WeChat at Weibo sa China at ng Vkontakte sa Russia—mga pinagsamang bersiyon nila ng Facebook, Twitter, Viber, Messenger, PayPal, GCash, at iba pa—mamanmanan ang mamamayan. Pasusunurin lahat sa kagustuhan ng diktadurya o ng mega-conglomerate.
+        </p>
+        <p>
+          Source: <a href="https://www.philstar.com/pilipino-star-ngayon/opinyon/2022/07/05/2193142/artificial-intelligence-nakabubuti-nakasisira" target="_blank" rel="noopener">Artificial Intelligence: Nakabubuti, Nakasisira</a>
+        </p>
+      </div>
+      <button id="proceed-btn" class="next-btn">Next</button>
+    </section>
+
+    <!-- Quiz Directions -->
+    <div id="quiz-directions" class="quiz-directions" style="display:none;">
+      <strong>Panuto:</strong> Basahin nang mabuti ang bawat tanong. Pumili ng tamang sagot sa bawat bilang.
+    </div>
+
+    <!-- Quiz container: white background, only shown after clicking Next -->
+    <div id="quiz-container" style="display: none;">
+      <div id="timer">Time left: 02:00</div>
+      <form id="multiple-choice-quiz" autocomplete="off">
+        <fieldset>
+          <legend class="sr-only">Multiple Choice Quiz</legend>
+          <div class="quiz-question-card">
+            <span class="question-number">1.</span>
+            <span class="question-text">Ano ang pangunahing kaibahan ng ikatlong antas ng computing (AI) kumpara sa unang dalawang antas?</span>
+            <div class="choices-group">
+              <label><input type="radio" name="q1" value="A" required> A. Nakatuon ito sa pagpapabilis ng komunikasyon</label>
+              <label><input type="radio" name="q1" value="B"> B. Nakabase ito sa social media at Wi-Fi</label>
+              <label><input type="radio" name="q1" value="C"> C. Kayang gumawa ang AI ng sariling desisyon at pagkatuto mula sa datos</label>
+              <label><input type="radio" name="q1" value="D"> D. Nakatuon ito sa paggawa ng sining at agham</label>
+            </div>
+          </div>
+          <div class="quiz-question-card">
+            <span class="question-number">2.</span>
+            <span class="question-text">Alin sa mga sumusunod ang HINDI direktang aplikasyon ng AI ayon sa binasang artikulo?</span>
+            <div class="choices-group">
+              <label><input type="radio" name="q2" value="A" required> A. Paglikha ng bagong gamot gamit ang data analysis</label>
+              <label><input type="radio" name="q2" value="B"> B. Pagbubuo ng sariling robot gamit ang machine learning</label>
+              <label><input type="radio" name="q2" value="C"> C. Pagpadala ng ayuda sa pamamagitan ng Wi-Fi</label>
+              <label><input type="radio" name="q2" value="D"> D. Pagsupil sa mga kritiko gamit ang advanced surveillance</label>
+            </div>
+          </div>
+          <div class="quiz-question-card">
+            <span class="question-number">3.</span>
+            <span class="question-text">Bakit itinuturing na may panganib ang paggamit ng AI sa ilalim ng mapanupil na pamahalaan o korporasyon?</span>
+            <div class="choices-group">
+              <label><input type="radio" name="q3" value="A" required> A. Dahil maaaring tumigil sa paggana ang teknolohiya</label>
+              <label><input type="radio" name="q3" value="B"> B. Dahil mas mabilis nitong pinapababa ang kalidad ng buhay</label>
+              <label><input type="radio" name="q3" value="C"> C. Dahil nawawalan ng trabaho ang mga manggagawa</label>
+              <label><input type="radio" name="q3" value="D"> D. Dahil maaari nitong kontrolin at supilin ang kalayaan ng mga tao</label>
+            </div>
+          </div>
+          <div class="quiz-question-card">
+            <span class="question-number">4.</span>
+            <span class="question-text">Kung ikaw ay lilikha ng patakaran ukol sa AI, ano ang pinakamahalagang dapat isaalang-alang batay sa artikulo?</span>
+            <div class="choices-group">
+              <label><input type="radio" name="q4" value="A" required> A. Pagpapalawak ng social media platforms</label>
+              <label><input type="radio" name="q4" value="B"> B. Pagtiyak na ginagamit ito para sa ikabubuti ng nakararami, hindi sa paninikil</label>
+              <label><input type="radio" name="q4" value="C"> C. Pagsasara ng lahat ng AI-related companies</label>
+              <label><input type="radio" name="q4" value="D"> D. Pagtaas ng presyo ng AI gadgets upang limitahan ang paggamit</label>
+            </div>
+          </div>
+          <div class="quiz-question-card">
+            <span class="question-number">5.</span>
+            <span class="question-text">Paano ipinakikita ng artikulo ang progresibong epekto ng teknolohiya mula unang antas hanggang sa AI?</span>
+            <div class="choices-group">
+              <label><input type="radio" name="q5" value="A" required> A. Ipinapakita nito ang unti-unting pagkawala ng trabaho ng tao</label>
+              <label><input type="radio" name="q5" value="B"> B. Ipinapakita ang pagtaas ng kasanayan ng mga robot sa teknikal na paggawa</label>
+              <label><input type="radio" name="q5" value="C"> C. Ipinapakita ang paglipat ng kontrol mula sa tao patungo sa robot</label>
+              <label><input type="radio" name="q5" value="D"> D. Ipinapakita ang pag-unlad mula simpleng memorya at komunikasyon tungo sa artipisyal na pag-iisip</label>
+            </div>
+          </div>
+          <button type="submit" class="submit-btn">Isumite ang Sagot</button>
+        </fieldset>
+      </form>
+      <div id="quiz-result" aria-live="polite"></div>
+    </div>
+  </main>
+  <script src="Pquiz1.js"></script>
+</body>
+</html>

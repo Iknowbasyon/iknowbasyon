@@ -1,0 +1,223 @@
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: white;
+  min-height: 100vh;
+  color: #222;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: #00daef;
+  color: black;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 0 12px;
+  box-shadow: 0 2px 10px rgba(0,218,239,0.14);
+  z-index: 1002;
+}
+
+header h1 {
+  font-size: 1.4em;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin: 0;
+  text-align: center;
+  flex: 0 1 auto;
+}
+
+.back-btn {
+  position: absolute;
+  left: 10px;
+  background: none;
+  border: none;
+  color: #222;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 8px 10px;
+  border-radius: 7px;
+  transition: background 0.18s, color 0.18s;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.back-btn:hover {
+  background: #00daef;
+  color: #fff;
+}
+
+.headerLogo {
+  display: block;
+  margin: 24px auto 18px auto;
+  max-width: 70vw;
+  width: auto;
+  height: auto;
+}
+
+main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* --- Responsive, perfectly fitting Description Box --- */
+.custom-description-inner {
+  font-size: 1.13rem;
+  line-height: 1.5;
+  color: #222;
+  text-align: center;
+  background: #fafdff;
+  border: 2px solid #00daef;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,218,239,0.09);
+  padding: 14px 8px 10px 8px;
+  margin: 0 0 24px 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  word-break: break-word;
+  transition: box-shadow 0.2s;
+}
+.custom-description-inner b {
+  color: #222;
+  font-size: 1.15em;
+  letter-spacing: 0.5px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.inner-text {
+  font-size: 0.98rem;
+  color: #222;
+  margin-top: 8px;
+  display: block;
+  word-break: break-word;
+  opacity: 0.96;
+}
+
+/* --- Box Container & Feature Boxes --- */
+.box-container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 20px;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 4vw;
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.feature-box {
+  background: linear-gradient(135deg, #fafdff 85%, #e6fcff 100%);
+  border: 2px solid #00daef;
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0,218,239,0.12);
+  padding: 24px 5vw 20px 5vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.22s, transform 0.18s, border 0.18s;
+  text-align: center;
+  cursor: pointer;
+  min-height: 110px;
+  position: relative;
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin-top: 16px;
+  transform-origin: bottom center;
+}
+.feature-box:hover {
+  box-shadow: 0 8px 28px rgba(0,218,239,0.19), 0 2px 16px rgba(0,218,239,0.09);
+  border-color: #00b5c9;
+  background: linear-gradient(135deg, #e6fcff 75%, #fafdff 100%);
+  transform: scale(1.01);
+}
+
+.feature-logo {
+  font-size: 2.25rem;
+  margin-bottom: 10px;
+  transition: transform 0.18s;
+}
+.feature-box:hover .feature-logo {
+  transform: scale(1.13) rotate(-7deg);
+}
+
+.feature-title {
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: #00c4d6;
+  margin-bottom: 5px;
+  text-shadow: 0 1px 0 #fff, 0 0px 2px #b8ecf1;
+  letter-spacing: 0.5px;
+}
+
+.feature-desc {
+  font-size: 0.97rem;
+  color: #333;
+  margin-top: 2px;
+  opacity: 0.96;
+}
+
+/* Tablet & Desktop styles */
+@media (min-width: 700px) {
+  .box-container {
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    gap: 36px;
+    max-width: 100%;
+    padding: 0;
+  }
+  .feature-box {
+    width: 280px;
+    min-height: 140px;
+    padding: 30px 20px 22px 20px;
+    max-width: 100%;
+  }
+  .custom-description-inner {
+    font-size: 1.48rem;
+    padding: 28px 2vw 20px 2vw;
+    max-width: 500px;
+    margin: 0 auto 44px auto;
+  }
+  .inner-text {
+    font-size: 1.15rem;
+    margin-top: 15px;
+  }
+  .feature-title {
+    font-size: 1.18rem;
+  }
+  .feature-logo {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .custom-description-inner,
+  .feature-box {
+    padding-left: 2vw;
+    padding-right: 2vw;
+    font-size: 0.98rem;
+    max-width: 100vw;
+  }
+  .box-container {
+    padding-left: 0;
+    padding-right: 0;
+    gap: 16px;
+    width: 100%;
+    max-width: 100%;
+  }
+}
