@@ -1,0 +1,123 @@
+body {
+  background: white;
+  font-family: 'Montserrat', Arial, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Header styles */
+header {
+  width: 100%;
+  background: #00daef;
+  padding: 24px 0 14px 0;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  border-radius: 0 0 24px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin-bottom: 34px;
+}
+
+.back-btn {
+  position: absolute;
+  left: 24px;
+  top: 18px;
+  color: black;
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.back-btn:hover {
+  background: rgba(0,0,0,0.1);
+}
+
+header h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 1px;
+  color: black;
+}
+
+header i {
+  color: black;
+  font-style: italic;
+}
+
+header p {
+  font-size: 1.08rem;
+  color: #222;
+  margin: 4px 0 0 0;
+  text-align: center;
+}
+
+/* Main layout */
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 60vh;
+}
+
+/* Responsive iframe container */
+.crossword-embed {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+/* Responsive iframe */
+.crossword-embed iframe {
+  width: 100%;
+  min-height: 400px;
+  max-width: 800px;
+  height: 60vw; /* 60% of viewport width */
+  max-height: 600px;
+  border: none;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.07);
+}
+
+/* Mobile styles */
+@media (max-width: 600px) {
+  header {
+    padding: 14px 0 10px 0;
+    border-radius: 0 0 12px 12px;
+    margin-bottom: 22px;
+  }
+  .back-btn {
+    left: 8px;
+    top: 8px;
+    padding: 5px 12px;
+    font-size: 0.95rem;
+  }
+  header h1 {
+    font-size: 1.4rem;
+  }
+  main {
+    width: 100%;
+    padding: 0 2vw;
+  }
+  .crossword-embed {
+    margin-top: 1rem;
+  }
+  .crossword-embed iframe {
+    min-height: 250px;
+    height: 70vw;
+    max-height: 400px;
+  }
+}
