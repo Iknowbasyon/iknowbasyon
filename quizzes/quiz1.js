@@ -107,3 +107,12 @@ window.onpopstate = function () {
   // Optionally, show a warning (customize message as needed)
   alert("You cannot go back during the exam.");
 };
+
+<script>
+window.addEventListener('load', function() {
+  var crossword = document.querySelector('.crossword-wrapper');
+  if (crossword) {
+    crossword.scrollIntoView({behavior: "smooth"});
+  }
+});
+</script>
