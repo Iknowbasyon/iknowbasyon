@@ -40,16 +40,12 @@ function checkMatch() {
 pass1.oninput = checkMatch;
 pass2.oninput = checkMatch;
 
-// Demo form submit handling (shows message only, no real auth)
+// Login form submit handling: Redirect to landing page after login
 loginForm.onsubmit = function(e) {
   e.preventDefault();
-  document.getElementById('login-message').textContent = "Demo: Log In clicked!";
-  setTimeout(() => {
-    document.getElementById('login-message').textContent = "";
-    // Redirect to landing page after message disappears
-    window.location.href = '/iknowbasyon/landing/landing.html';
-  }, 2000);
+  window.location.href = '/iknowbasyon/landing/landing.html';
 };
+
 signupForm.onsubmit = function(e) {
   e.preventDefault();
   if(pass1.value !== pass2.value) {
