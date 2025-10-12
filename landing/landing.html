@@ -4,13 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>I'Know'basyon</title>
-  <link rel="stylesheet" href="/iknowbasyon/landing/1.css">
+  <link rel="stylesheet" href="1.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Segoe+UI:400,700&display=swap">
-  <script defer src="/iknowbasyon/landing/1.js"></script>
+  <script defer src="1.js"></script>
 </head>
 <body>
   <header>
     <div class="header-title">
+      <!-- Optional: Add site title or logo text here -->
     </div>
     <button class="menu-btn" id="menuToggle" aria-label="Open menu">
       <span></span>
@@ -18,10 +19,10 @@
       <span></span>
     </button>
   </header>
-  <img src="/iknowbasyon/image/13.png" class="headerLogo" alt="logo">
+  <img src="13.png" class="headerLogo" alt="logo">
   <nav id="sidebar" class="sidebar">
     <ul>
-      <li><a href="/iknowbasyon/registration.html" onclick="showPage('registration'); return false;">Magrehistro</a></li>
+      <li><a href="registration.html" onclick="showPage('registration'); return false;">Magrehistro</a></li>
       <li><a href="#" onclick="showPage('home'); return false;">Pangunahing Pahina</a></li>
       <li><a href="#" onclick="showPage('about'); return false;">Tungkol sa</a></li>
       <li class="dropdown">
@@ -31,25 +32,25 @@
         <ul id="aralinDropdown" class="dropdown-list">
           <!-- Unang Aralin -->
           <li class="dropdown">
-            <a href="/iknowbasyon/quizzes/Unangaralin.html" class="sub-dropdown-btn">
+            <a href="Unangaralin.html" class="sub-dropdown-btn">
               Unang Aralin
             </a>
           </li>
           <!-- Pangalawang Aralin -->
           <li class="dropdown">
-            <a href="/iknowbasyon/quizzes/Pangalawangaralin.html" class="sub-dropdown-btn">
+            <a href="Pangalawangaralin.html" class="sub-dropdown-btn">
               Pangalawang Aralin
             </a>
           </li>
           <!-- Pangatlong Aralin -->
           <li class="dropdown">
-            <a href="/iknowbasyon/quizzes/Pangatlongaralin.html" class="sub-dropdown-btn">
+            <a href="Pangatlongaralin.html" class="sub-dropdown-btn">
               Pangatlong Aralin
             </a>
           </li>
           <!-- Pang-apat na Aralin -->
           <li class="dropdown">
-            <a href="/iknowbasyon/quizzes/PangapatAralin.html" class="sub-dropdown-btn">
+            <a href="PangapatAralin.html" class="sub-dropdown-btn">
               Pang-apat na Aralin
             </a>
           </li>
@@ -57,7 +58,7 @@
       </li>
       <li><a href="#" onclick="showPage('record'); return false;">Itala</a></li>
       <li class="logout-li">
-        <button id="logout-btn" onclick="location.href='/iknowbasyon/index.html'">Log Out</button>
+        <button id="logout-btn" onclick="location.href='index.html'">Log Out</button>
       </li>
     </ul>
   </nav>
@@ -69,13 +70,19 @@
           Ang I'Know'basyon:
         </div>
         <div class="custom-description-inner">
-          Ito ang pangalan ng Website na nagpapakilala upang magamit ang bagong materyal sa pagtuturo dulot ng pagbabago sa kurikulum upang mapabuti ang karanasan at resulta ng pag-aaral. 
-          Ito ay mayroong ibig-sabihin <b>“I know”</b> na nangangahulugang <b>“Alam ko”</b> at <b>“Iknowbasyon”</b> na nangangahulugang “Alam ko na mayroong pagbabago”.<br><br>
-          Ang Website na ito ay isang Suplementaryong Kagamitan na inihanda ng guro upang higit na malinang ang mga kasanayan at kompetensi ng mga mag-aaral sa bawat aralin. 
-          Layunin nitong ihatid ang mga gawaing kaugnay ng mga paksang tinalakay sa Ikatlong Markahan.<br><br>
-          Layunin ng <b>I'know'basyon</b> na malinang ang antas ng kasanayan ng mga mag-aaral pagdating sa mga aralin sa Mabisang komunikasyon. 
-          Ito ay ginamit bilang kagamitang Pampagkatuto upang makasabay sa mabilis na pagbabago ng panahon dulot ng yumayabong na teknolohiya. 
-          Ito rin ang magsisilbing daan upang mapukaw ang interes at aktibong partisipasyon ng mga mag-aaral.
+          <p>
+            Ito ang pangalan ng Website na nagpapakilala upang magamit ang bagong materyal sa pagtuturo dulot ng pagbabago sa kurikulum upang mapabuti ang karanasan at resulta ng pag-aaral. 
+            Ito ay mayroong ibig-sabihin <b>“I know”</b> na nangangahulugang <b>“Alam ko”</b> at <b>“Iknowbasyon”</b> na nangangahulugang “Alam ko na mayroong pagbabago”.
+          </p>
+          <p>
+            Ang Website na ito ay isang Suplementaryong Kagamitan na inihanda ng guro upang higit na malinang ang mga kasanayan at kompetensi ng mga mag-aaral sa bawat aralin. 
+            Layunin nitong ihatid ang mga gawaing kaugnay ng mga paksang tinalakay sa Ikatlong Markahan.
+          </p>
+          <p>
+            Layunin ng <b>I'know'basyon</b> na malinang ang antas ng kasanayan ng mga mag-aaral pagdating sa mga aralin sa Mabisang komunikasyon. 
+            Ito ay ginamit bilang kagamitang Pampagkatuto upang makasabay sa mabilis na pagbabago ng panahon dulot ng yumayabong na teknolohiya. 
+            Ito rin ang magsisilbing daan upang mapukaw ang interes at aktibong partisipasyon ng mga mag-aaral.
+          </p>
         </div>
       </div>
     </section>
@@ -85,9 +92,12 @@
           Tungkol sa I'Know'basyon:
         </div>
         <div class="custom-description-inner">
-          Ang website na ito ay idinisenyo upang tulungan ang mga mag-aaral sa pag-unlad ng kanilang komunikasyon at pagkatuto. 
-          Dito, matutuklasan mo ang mga aralin na magpapalawak sa iyong kaalaman at kasanayan sa makabagong paraan.
+          <p>
+            Ang website na ito ay idinisenyo upang tulungan ang mga mag-aaral sa pag-unlad ng kanilang komunikasyon at pagkatuto. 
+            Dito, matutuklasan mo ang mga aralin na magpapalawak sa iyong kaalaman at kasanayan sa makabagong paraan.
+          </p>
         </div>
+      </div>
     </section>
     <section id="lesson" class="page-section" style="display:none;">
       <h1 id="lessonTitle"></h1>
