@@ -133,7 +133,7 @@ main {
 @media (max-width: 600px) {
   .crossword-wrapper {
     height: 90vh;
-    padding-top: 60px; /* Adjust if ads appear at the top */
+    padding-top: 100px; /* Adjust if ads appear at the top */
   }
   .crossword-wrapper iframe {
     width: 100vw !important;
