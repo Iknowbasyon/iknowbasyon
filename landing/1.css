@@ -403,3 +403,11 @@ main {
   from { opacity: 0; transform: translateY(24px);}
   to { opacity: 1; transform: translateY(0);}
 }
+
+.custom-description-inner p {
+  text-indent: 0;
+  margin-bottom: 1.2em;
+}
+.custom-description-inner p:nth-of-type(-n+2) {
+  text-indent: 40px;
+}
