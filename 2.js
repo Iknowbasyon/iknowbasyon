@@ -46,6 +46,8 @@ loginForm.onsubmit = function(e) {
   document.getElementById('login-message').textContent = "Demo: Log In clicked!";
   setTimeout(() => {
     document.getElementById('login-message').textContent = "";
+    // Redirect to landing page after message disappears
+    window.location.href = '/iknowbasyon/landing/landing.html';
   }, 2000);
 };
 signupForm.onsubmit = function(e) {
@@ -59,9 +61,3 @@ signupForm.onsubmit = function(e) {
     document.getElementById('signup-message').textContent = "";
   }, 2000);
 };
-
-// landing page after login/signup
-document.getElementById('login-form').addEventListener('submit', function(event) {
-  event.preventDefault();
-  window.location.href = '/iknowbasyon/landing/landing.html'; // Redirect to landing page
-});
