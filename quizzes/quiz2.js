@@ -1,3 +1,5 @@
+// Quiz2.js
+
 const timerDisplay = document.getElementById('timer');
 const startBtn = document.getElementById('start-btn');
 const quizContainer = document.getElementById('quiz-container');
@@ -118,7 +120,6 @@ const answers = [
   "C"  // 10
 ];
 
-// User's answers, initially empty
 let userAnswers = Array(questions.length).fill("");
 
 // Initial UI state
@@ -148,7 +149,6 @@ function startTimer() {
   }, 1000);
 }
 
-// --- Back button handling ---
 function blockBackButton() {
   history.pushState({ quiz: true }, "", location.href);
   window.onpopstate = function () {
@@ -159,12 +159,10 @@ function blockBackButton() {
 
 function unblockBackButton() {
   window.onpopstate = null;
-  // Remove the trap state so back doesn't go to start screen
   if (history.state && history.state.quiz) {
     history.replaceState(null, "", location.href);
   }
 }
-// ----------------------------
 
 startBtn.onclick = function() {
   startBtn.style.display = "none";
@@ -179,7 +177,11 @@ function showQuestion(index) {
   currentQuestionIndex = index;
   const qData = questions[index];
 
-  // Build question card
+  if (!qData) {
+    questionArea.innerHTML = "<div>Walang tanong.</div>";
+    return;
+  }
+
   let html = `<div class="quiz-question-card">
     <span class="question-number">${index + 1}.</span>
     <span class="question-text">${qData.q}</span>
@@ -198,7 +200,7 @@ function showQuestion(index) {
   nextBtn.style.display = index < questions.length - 1 ? "inline-block" : "none";
   submitBtn.style.display = index === questions.length - 1 ? "inline-block" : "none";
 
-  // Disable next until answered (optional)
+  // Disable next until answered
   const radios = questionArea.querySelectorAll(`input[type=radio][name=q${index+1}]`);
   nextBtn.disabled = userAnswers[index] === "";
 
@@ -229,11 +231,8 @@ nextBtn.onclick = function() {
   }
   if (currentQuestionIndex < questions.length - 1) showQuestion(currentQuestionIndex + 1);
 };
+nextBtn.disabled = true; // Disable next if nothing is selected
 
-// Disable next if nothing is selected
-nextBtn.disabled = true;
-
-// Handle quiz submission
 quizForm.onsubmit = function(event) {
   event.preventDefault();
   if (timerInterval) clearInterval(timerInterval);
@@ -260,21 +259,10 @@ quizForm.onsubmit = function(event) {
     result.textContent = `Nakuha mo ang ${score} sa 10! Oras: ${minutes}:${seconds}`;
     result.style.color = "#00daef";
   }
-  // Disable all nav/submit buttons
   prevBtn.disabled = true;
   nextBtn.disabled = true;
   submitBtn.disabled = true;
-  // Disable all radios
   questionArea.querySelectorAll("input[type=radio]").forEach(r => r.disabled = true);
 
-  // Unblock back navigation and clean up history
   unblockBackButton();
 };
-
-function unblockBackButtonAndCleanup() {
-  window.onpopstate = null;
-  if (history.state && history.state.quiz) {
-    // Pop the trap state so the next back goes to directory or previous page
-    history.back();
-  }
-}
