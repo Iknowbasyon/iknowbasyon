@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>I'Know'basyon – Tama o Mali Quiz</title>
-  <link rel="stylesheet" href="quiz3.css">
+  <link rel="stylesheet" href="/iknowbasyon/quizzes/quiz3.css">
 </head>
 <body>
   <header>
@@ -27,6 +27,8 @@
       <form id="tama-mali-quiz" autocomplete="off">
         <fieldset>
           <legend class="sr-only">Tama o Mali Quiz</legend>
+          
+          <!-- Questions -->
           <div class="quiz-question-card">
             <span class="question-number">1.</span>
             <span class="question-text"> Ang paghahatid ng mensahe ay nakasalalay sa intonasyon, tono, bilis ng pagsasalita, 
@@ -111,6 +113,12 @@
               <label><input type="radio" name="q10" value="Mali"> Mali</label>
             </div>
           </div>
+
+          <!-- Navigation Buttons: Flexbox for spacing -->
+          <div class="nav-btns">
+            <button type="button" class="nav-btn prev-btn">← Previous</button>
+            <button type="button" class="nav-btn next-btn">Next →</button>
+          </div>
           <button type="submit" class="submit-btn">Isumite ang Sagot</button>
         </fieldset>
       </form>
@@ -118,6 +126,6 @@
     </div>
   </main>
 
-  <script src="quiz3.js"></script>
+  <script src="/iknowbasyon/quizzes/quiz3.js"></script>
 </body>
 </html>
