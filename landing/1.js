@@ -63,5 +63,5 @@ function showLesson(lesson, quiz) {
 
 document.getElementById('logout-btn').addEventListener('click', function() {
   // For demo purposes, just reload to show login/signup page
-  window.location.href = "index.html";
+  window.location.href = "/iknowbasyon/index.html";
 });
