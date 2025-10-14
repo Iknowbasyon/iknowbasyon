@@ -23,107 +23,12 @@
       <form id="multiple-choice-quiz" autocomplete="off">
         <fieldset>
           <legend class="sr-only">Multiple Choice Quiz</legend>
-          <div class="quiz-question-card">
-            <span class="question-number">1.</span>
-            <span class="question-text">Alin sa mga sumusunod ang katangian ng estruktura ng akademikong teksto?</span>
-            <div class="choices-group">
-              <label><input type="radio" name="q1" value="A" required> A. May simula, gitna, at wakas</label>
-              <label><input type="radio" name="q1" value="B"> B. Walang malinaw na pagkakaayos</label>
-              <label><input type="radio" name="q1" value="C"> C. Masining na pagsasalaysay</label>
-              <label><input type="radio" name="q1" value="D"> D. Naglalaman ng dayalogo</label>
-            </div>
+          <div id="question-area"></div>
+          <div class="nav-btns" style="display:flex;justify-content:space-between;gap:8px;margin-top:0.5rem;">
+            <button type="button" class="prev-btn" id="prev-btn" style="display:none;">← Previous</button>
+            <button type="button" class="next-btn" id="next-btn">Next →</button>
+            <button type="submit" class="submit-btn" id="submit-btn" style="display:none;">Isumite ang Sagot</button>
           </div>
-          <div class="quiz-question-card">
-            <span class="question-number">2.</span>
-            <span class="question-text">Kapag ang layunin ay magpabatid ng impormasyon, ang tono ng teksto ay dapat:</span>
-            <div class="choices-group">
-              <label><input type="radio" name="q2" value="A" required> A. Pormal at malinaw</label>
-              <label><input type="radio" name="q2" value="B"> B. Nakakatawa at pabiro</label>
-              <label><input type="radio" name="q2" value="C"> C. Masining at matalinghaga</label>
-              <label><input type="radio" name="q2" value="D"> D. Pabago-bago</label>
-            </div>
-          </div>
-          <div class="quiz-question-card">
-            <span class="question-number">3.</span>
-            <span class="question-text">Ang “multimodal na teksto” ay tumutukoy sa tekstong gumagamit ng:</span>
-            <div class="choices-group">
-              <label><input type="radio" name="q3" value="A" required> A. Iisang anyo lamang</label>
-              <label><input type="radio" name="q3" value="B"> B. Lahat ng uri ng wika</label>
-              <label><input type="radio" name="q3" value="C"> C. Kombinasyon ng wika, imahe, tunog, at kilos</label>
-              <label><input type="radio" name="q3" value="D"> D. Pormal na pagsasalita lamang</label>
-            </div>
-          </div>
-          <div class="quiz-question-card">
-            <span class="question-number">4.</span>
-            <span class="question-text">Alin sa mga sumusunod ang halimbawa ng teknikal na teksto?</span>
-            <div class="choices-group">
-              <label><input type="radio" name="q4" value="A" required> A. Nobela</label>
-              <label><input type="radio" name="q4" value="B"> B. Tula</label>
-              <label><input type="radio" name="q4" value="C"> C. Manwal ng makina</label>
-              <label><input type="radio" name="q4" value="D"> D. Maikling kwento</label>
-            </div>
-          </div>
-          <div class="quiz-question-card">
-            <span class="question-number">5.</span>
-            <span class="question-text">Ang wika sa isang akademikong sulatin ay dapat na:</span>
-            <div class="choices-group">
-              <label><input type="radio" name="q5" value="A" required> A. Kolokyal</label>
-              <label><input type="radio" name="q5" value="B"> B. Pormal</label>
-              <label><input type="radio" name="q5" value="C"> C. Balbal</label>
-              <label><input type="radio" name="q5" value="D"> D. Emosyonal</label>
-            </div>
-          </div>
-          <div class="quiz-question-card">
-            <span class="question-number">6.</span>
-            <span class="question-text">Sa kontekstong akademiko, ano ang pinakamahalagang sangkap ng nilalaman?</span>
-            <div class="choices-group">
-              <label><input type="radio" name="q6" value="A" required> A. Opinyon</label>
-              <label><input type="radio" name="q6" value="B"> B. Datos at ebidensya</label>
-              <label><input type="radio" name="q6" value="C"> C. Kwento ng personal na karanasan</label>
-              <label><input type="radio" name="q6" value="D"> D. Makatang salita</label>
-            </div>
-          </div>
-          <div class="quiz-question-card">
-            <span class="question-number">7.</span>
-            <span class="question-text">Anong uri ng teksto ang gumagamit ng balangkas tulad ng panimula, katawan, at kongklusyon?</span>
-            <div class="choices-group">
-              <label><input type="radio" name="q7" value="A" required> A. Liham</label>
-              <label><input type="radio" name="q7" value="B"> B. Sanaysay</label>
-              <label><input type="radio" name="q7" value="C"> C. Kwento</label>
-              <label><input type="radio" name="q7" value="D"> D. Komiks</label>
-            </div>
-          </div>
-          <div class="quiz-question-card">
-            <span class="question-number">8.</span>
-            <span class="question-text">Alin ang hindi layunin ng akademikong teksto?</span>
-            <div class="choices-group">
-              <label><input type="radio" name="q8" value="A" required> A. Magpaliwanag</label>
-              <label><input type="radio" name="q8" value="B"> B. Magsalaysay ng kathang-isip</label>
-              <label><input type="radio" name="q8" value="C"> C. Mag-analisa</label>
-              <label><input type="radio" name="q8" value="D"> D. Maglahad ng ebidensya</label>
-            </div>
-          </div>
-          <div class="quiz-question-card">
-            <span class="question-number">9.</span>
-            <span class="question-text">Sa pagsulat ng teknikal na teksto, mahalagang isaalang-alang ang awdyens upang:</span>
-            <div class="choices-group">
-              <label><input type="radio" name="q9" value="A" required> A. Mapahanga sila</label>
-              <label><input type="radio" name="q9" value="B"> B. Magamit ang tamang jargon o termino</label>
-              <label><input type="radio" name="q9" value="C"> C. Makapagsulat ng mahaba</label>
-              <label><input type="radio" name="q9" value="D"> D. Maipakita ang damdamin ng manunulat</label>
-            </div>
-          </div>
-          <div class="quiz-question-card">
-            <span class="question-number">10.</span>
-            <span class="question-text">Aling anyo ng teksto ang mas epektibo sa pagpapaliwanag ng prosesong siyentipiko?</span>
-            <div class="choices-group">
-              <label><input type="radio" name="q10" value="A" required> A. Balita</label>
-              <label><input type="radio" name="q10" value="B"> B. Sanaysay na masining</label>
-              <label><input type="radio" name="q10" value="C"> C. Ulat teknikal</label>
-              <label><input type="radio" name="q10" value="D"> D. Kwento ng karanasan</label>
-            </div>
-          </div>
-          <button type="submit" class="submit-btn">Isumite ang Sagot</button>
         </fieldset>
       </form>
       <div id="quiz-result" aria-live="polite"></div>
