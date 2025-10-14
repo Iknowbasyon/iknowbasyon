@@ -4,16 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>I'Know'basyon – Multiple Choice Quiz</title>
-  <link rel="stylesheet" href="Pquiz1.css">
+  <link rel="stylesheet" href="/iknowbasyon/quizzes/Pquiz1.css">
 </head>
 <body>
   <header>
     <button class="back-btn" type="button" onclick="window.history.back()" aria-label="Bumalik">← Bumalik</button>
     <h1>I<span style="font-style: italic;"> 'Know' </span>basyon</h1>
   </header>
-
-  <button id="start-btn" class="start-btn">Start Quiz</button>
-
   <main>
     <!-- Reading passage FIRST (with Next button) -->
     <section id="reading-section" class="reading-section">
@@ -38,7 +35,7 @@
           Source: <a href="https://www.philstar.com/pilipino-star-ngayon/opinyon/2022/07/05/2193142/artificial-intelligence-nakabubuti-nakasisira" target="_blank" rel="noopener">Artificial Intelligence: Nakabubuti, Nakasisira</a>
         </p>
       </div>
-      <button id="proceed-btn" class="next-btn">Next</button>
+      <button id="proceed-btn" class="proceed-btn">Next</button>
     </section>
 
     <!-- Quiz Directions -->
@@ -102,12 +99,16 @@
               <label><input type="radio" name="q5" value="D"> D. Ipinapakita ang pag-unlad mula simpleng memorya at komunikasyon tungo sa artipisyal na pag-iisip</label>
             </div>
           </div>
+          <div class="nav-btns">
+            <button type="button" class="prev-btn">← Previous</button>
+            <button type="button" class="next-btn">Next →</button>
+          </div>
           <button type="submit" class="submit-btn">Isumite ang Sagot</button>
         </fieldset>
       </form>
       <div id="quiz-result" aria-live="polite"></div>
     </div>
   </main>
-  <script src="Pquiz1.js"></script>
+  <script src="/iknowbasyon/quizzes/Pquiz1.js"></script>
 </body>
 </html>
