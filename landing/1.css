@@ -411,3 +411,61 @@ main {
 .custom-description-inner p:nth-of-type(-n+2) {
   text-indent: 40px;
 }
+
+
+.locked-aralin {
+  color: #888;
+  cursor: pointer;
+}
+.locked-aralin::after {
+  content: " 🔒";
+  color: #c00;
+}
+
+/* Modal styles */
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 99; 
+  left: 0; top: 0;
+  width: 100vw; height: 100vh;
+  overflow: auto; 
+  background: rgba(0,0,0,0.4); 
+}
+
+.modal-content {
+  background: #fff;
+  margin: 12% auto; 
+  padding: 2rem 2rem 1.5rem;
+  border-radius: 10px;
+  width: 90%; max-width: 340px;
+  box-shadow: 0 8px 32px rgba(25,118,210,0.16);
+  text-align: center;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute; top: 14px; right: 18px;
+  font-size: 24px; font-weight: bold; color: #aaa;
+  cursor: pointer;
+}
+
+.close-btn:hover { color: #1976d2; }
+.modal-content h2 { margin-top: 0; }
+#passwordInput {
+  width: 80%; padding: 8px; margin: 1rem 0 0.5rem 0;
+  border-radius: 5px; border: 1px solid #ccc;
+  font-size: 1rem; text-align: center;
+}
+#submitPassword {
+  padding: 8px 24px; border: none; border-radius: 5px;
+  background: linear-gradient(90deg,#1976d2 65%, #00daef 100%);
+  color: #fff; font-size: 1rem; cursor: pointer;
+  margin-bottom: 1rem;
+}
+#submitPassword:hover {
+  background: linear-gradient(90deg,#00daef 65%, #1976d2 100%);
+}
+.error {
+  color: #c00; font-size: 0.95em; margin-top: 0.5rem; min-height: 1.3em;
+}
