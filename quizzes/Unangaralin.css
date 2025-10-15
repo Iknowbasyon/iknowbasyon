@@ -5,6 +5,12 @@ body {
   color: #222;
   margin: 0;
   padding: 0;
+  body {
+  background-image: url('/iknowbasyon/image/book');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
 }
 
 header {
