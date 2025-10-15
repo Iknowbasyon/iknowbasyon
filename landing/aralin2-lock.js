@@ -1,6 +1,6 @@
 // lock-aralin.js
 document.addEventListener('DOMContentLoaded', function () {
-  var lockedLink = document.getElementById('locked-aralin-link');
+  var lockedLink = document.getElementById('locked-aralin2-link');
   if (!lockedLink) return;
 
   // Modal elements
