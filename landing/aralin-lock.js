@@ -2,19 +2,19 @@
 const aralinConfig = {
   UnangAralin: {
     password: "password1",
-    url: "/iknowbasyon/landing/Unangaralin.html"
+    url: "/iknowbasyon/quizzes/Unangaralin.html"
   },
   PangalawangAralin: {
     password: "password2",
-    url: "/iknowbasyon/landing/Pangalawangaralin.html"
+    url: "/iknowbasyon/quizzes/Pangalawangaralin.html"
   },
   PangatlongAralin: {
     password: "password3",
-    url: "/iknowbasyon/landing/Pangatlongaralin.html"
+    url: "/iknowbasyon/quizzes/Pangatlongaralin.html"
   },
   PangapatAralin: {
     password: "password4",
-    url: "/iknowbasyon/landing/PangapatAralin.html"
+    url: "/iknowbasyon/quizzes/PangapatAralin.html"
   }
 };
 
@@ -59,3 +59,4 @@ document.addEventListener('DOMContentLoaded', function () {
     if (e.key === "Enter") tryUnlock();
   });
 });
+
