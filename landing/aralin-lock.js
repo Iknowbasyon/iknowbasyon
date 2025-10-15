@@ -3,6 +3,7 @@ const aralinConfig = {
   UnangAralin: {
     password: "1234"
     url:"/iknowbasyon/landing/landing.html"
+},
   
   PangalawangAralin: {
     password: "password2",
@@ -59,3 +60,4 @@ document.addEventListener('DOMContentLoaded', function () {
     if (e.key === "Enter") tryUnlock();
   });
 });
+
