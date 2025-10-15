@@ -1,34 +1,52 @@
-// lock-aralin.js
+// Map each aralin to its password and URL
+const aralinConfig = {
+  UnangAralin: {
+    password: "1234"
+    url:"/iknowbasyon/landing/landing.html"
+  
+  PangalawangAralin: {
+    password: "password2",
+    url: "Pangalawangaralin.html"
+  },
+  PangatlongAralin: {
+    password: "password3",
+    url: "Pangatlongaralin.html"
+  },
+  PangapatAralin: {
+    password: "password4",
+    url: "PangapatAralin.html"
+  }
+};
+
 document.addEventListener('DOMContentLoaded', function () {
-  var lockedLink = document.getElementById('locked-aralin-link');
-  if (!lockedLink) return;
+  const links = document.querySelectorAll('.locked-aralin');
+  const modal = document.getElementById('passwordModal');
+  const closeModal = document.getElementById('closeModal');
+  const submitBtn = document.getElementById('submitPassword');
+  const passwordInput = document.getElementById('passwordInput');
+  const passwordError = document.getElementById('passwordError');
+  let currentAralin = null;
 
-  // Modal elements
-  var modal = document.getElementById('passwordModal');
-  var closeModal = document.getElementById('closeModal');
-  var submitBtn = document.getElementById('submitPassword');
-  var passwordInput = document.getElementById('passwordInput');
-  var passwordError = document.getElementById('passwordError');
-
-  // Show modal when locked link is clicked
-  lockedLink.addEventListener('click', function(event) {
-    event.preventDefault();
-    passwordInput.value = '';
-    passwordError.textContent = '';
-    modal.style.display = "block";
-    passwordInput.focus();
+  links.forEach(link => {
+    link.addEventListener('click', function(event) {
+      event.preventDefault();
+      currentAralin = link.getAttribute('data-aralin');
+      passwordInput.value = '';
+      passwordError.textContent = '';
+      modal.style.display = "block";
+      passwordInput.focus();
+    });
   });
 
-  // Close modal
   closeModal.onclick = function() { modal.style.display = "none"; };
   window.onclick = function(event) { if (event.target == modal) modal.style.display = "none"; };
 
-  // Handle submit
   function tryUnlock() {
-    var password = passwordInput.value;
-    if (password === "1234") { // <-- Change YOUR_PASSWORD to your actual password!
+    if (!currentAralin || !aralinConfig[currentAralin]) return;
+    const password = passwordInput.value;
+    if (password === aralinConfig[currentAralin].password) {
       modal.style.display = "none";
-      window.location.href = "Pangalawangaralin.html";
+      window.location.href = aralinConfig[currentAralin].url;
     } else {
       passwordError.textContent = "Incorrect password!";
       passwordInput.value = '';
