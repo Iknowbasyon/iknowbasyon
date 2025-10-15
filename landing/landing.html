@@ -32,25 +32,25 @@
         <ul id="aralinDropdown" class="dropdown-list">
           <!-- Unang Aralin -->
           <li class="dropdown">
-            <a href="/iknowbasyon/quizzes/Unangaralin.html" class="sub-dropdown-btn">
+            <a href="#" class="sub-dropdown-btn locked-aralin" id="locked-aralin-link">
               Unang Aralin
             </a>
           </li>
           <!-- Pangalawang Aralin -->
           <li class="dropdown">
-            <a href="/iknowbasyon/quizzes/Pangalawangaralin.html" class="sub-dropdown-btn">
+           <a href="#" class="sub-dropdown-btn locked-aralin" id="locked-aralin-link">
               Pangalawang Aralin
             </a>
           </li>
           <!-- Pangatlong Aralin -->
           <li class="dropdown">
-            <a href="/iknowbasyon/quizzes/Pangatlongaralin.html" class="sub-dropdown-btn">
+            <a href="#" class="sub-dropdown-btn locked-aralin" id="locked-aralin-link">
               Pangatlong Aralin
             </a>
           </li>
           <!-- Pang-apat na Aralin -->
           <li class="dropdown">
-            <a href="/iknowbasyon/quizzes/PangapatAralin.html" class="sub-dropdown-btn">
+           <a href="#" class="sub-dropdown-btn locked-aralin" id="locked-aralin-link">
               Pang-apat na Aralin
             </a>
           </li>
@@ -107,5 +107,16 @@
   </main>
 
   <div class="overlay" id="overlay"></div>
+   <!-- Password Modal -->
+<div id="passwordModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" id="closeModal">&times;</span>
+    <h2>Enter Password</h2>
+    <input type="password" id="passwordInput" placeholder="Password" autocomplete="off" />
+    <button id="submitPassword">Unlock</button>
+    <div id="passwordError" class="error"></div>
+  </div>
+</div>
+  <script src="/iknowbasyon/landing/aralin-lock.js"></script>
 </body>
 </html>
