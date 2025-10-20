@@ -5,10 +5,72 @@ body {
   color: #222;
   margin: 0;
   padding: 0;
-  background-image: url('/iknowbasyon/image/MK.png');
+   background-image: none !important;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+}
+
+/* Responsive background helpers */
+.bg-picture,
+.bg-picture img.bg-img {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* behind everything */
+  pointer-events: none;
+  display: block;
+}
+
+.bg-picture img.bg-img {
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform: scale(1.03); /* prevent edge artifacts when blurred */
+  filter: brightness(.66) contrast(1.03) saturate(1.04);
+  transition: opacity 600ms ease, filter 400ms ease, transform 600ms ease;
+  opacity: 0;
+  will-change: opacity, transform, filter;
+}
+
+.bg-picture img.bg-img.loaded {
+  opacity: 1;
+  transform: scale(1.0);
+  filter: brightness(.62) contrast(1.04) saturate(1.05);
+}
+
+/* Overlay to improve legibility */
+.bg-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(0,0,0,0.22), rgba(0,0,0,0.30));
+  mix-blend-mode: normal;
+  transition: opacity 300ms ease;
+}
+
+/* Performance: reduce heavy filters on small/low-end devices */
+@media (max-width: 480px) {
+  .bg-picture img.bg-img {
+    filter: brightness(.72) saturate(1.00);
+    transform: scale(1.01);
+  }
+  .bg-overlay {
+    background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.22));
+  }
+}
+
+/* Accessibility: respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .bg-picture img.bg-img,
+  .bg-overlay {
+    transition: none !important;
+    transform: none !important;
+  }
 }
 
 header {
