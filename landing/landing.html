@@ -9,6 +9,22 @@
   <script defer src="/iknowbasyon/landing/1.js"></script>
 </head>
 <body>
+  <!-- Responsive background image (decorative) -->
+  <picture aria-hidden="true" class="bg-picture">
+    <source type="image/avif"
+            srcset="/iknowbasyon/image/MK-400.avif 400w, /iknowbasyon/image/MK-800.avif 800w, /iknowbasyon/image/MK-1200.avif 1200w"
+            sizes="100vw">
+    <source type="image/webp"
+            srcset="/iknowbasyon/image/MK-400.webp 400w, /iknowbasyon/image/MK-800.webp 800w, /iknowbasyon/image/MK-1200.webp 1200w"
+            sizes="100vw">
+    <img
+      class="bg-img"
+      src="/iknowbasyon/image/MK.png"
+      srcset="/iknowbasyon/image/MK-400.jpg 400w, /iknowbasyon/image/MK-800.jpg 800w, /iknowbasyon/image/MK-1200.jpg 1200w"
+      sizes="100vw"
+      alt=""
+      loading="eager">
+  </picture>
   <header>
     <div class="header-title">
       <!-- Optional: Add site title or logo text here -->
