@@ -3,81 +3,16 @@
 
 body {
   font-family: 'Segoe UI', Arial, sans-serif;
-  background: white;
+  background: #EFECE3;
   min-height: 100vh;
   color: #222;
   justify-content: center;
   align-items: center;
-  background-image: none !important;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
 }
 
-/* Responsive background helpers */
-.bg-picture,
-.bg-picture img.bg-img {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1; /* behind everything */
-  pointer-events: none;
-  display: block;
-}
-
-.bg-picture img.bg-img {
-  object-fit: cover;
-  object-position: center center;
-  display: block;
-  width: 100%;
-  height: 100%;
-  transform: scale(1.03); /* prevent edge artifacts when blurred */
-  filter: brightness(.66) contrast(1.03) saturate(1.04);
-  transition: opacity 600ms ease, filter 400ms ease, transform 600ms ease;
-  opacity: 0;
-  will-change: opacity, transform, filter;
-}
-
-.bg-picture img.bg-img.loaded {
-  opacity: 1;
-  transform: scale(1.0);
-  filter: brightness(.62) contrast(1.04) saturate(1.05);
-}
-
-/* Overlay to improve legibility */
-.bg-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background: linear-gradient(180deg, rgba(0,0,0,0.22), rgba(0,0,0,0.30));
-  mix-blend-mode: normal;
-  transition: opacity 300ms ease;
-}
-
-/* Performance: reduce heavy filters on small/low-end devices */
-@media (max-width: 480px) {
-  .bg-picture img.bg-img {
-    filter: brightness(.72) saturate(1.00);
-    transform: scale(1.01);
-  }
-  .bg-overlay {
-    background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.22));
-  }
-}
-
-/* Accessibility: respect reduced-motion preference */
-@media (prefers-reduced-motion: reduce) {
-  .bg-picture img.bg-img,
-  .bg-overlay {
-    transition: none !important;
-    transform: none !important;
-  }
-}
 /* Header */
 header {
-  background: #00daef;
+  background: #0C2B4E ;
   color: black;
   height: 80px;
   display: flex;
@@ -133,7 +68,7 @@ header {
 .menu-btn span {
   width: 100%;
   height: 5px;
-  background: black;
+  background: #EFECE3;
   border-radius: 3px;
   transition: 0.3s;
 }
@@ -148,8 +83,7 @@ header {
   left: 0;
   width: 270px;
   height: 100vh;
-  background: #fff;
-  box-shadow: 2px 0 18px rgba(0,218,239,0.16);
+  background: #0C2B4E ;
   padding-top: 100px;
   transform: translateX(-100%);
   transition: transform 0.3s;
@@ -180,7 +114,7 @@ header {
 .sub-dropdown-btn,
 #logout-btn {
   font-size: 1.15em;
-  color: #222;
+  color: whitesmoke;
   text-decoration: none;
   background: none;
   border: none;
@@ -222,7 +156,7 @@ header {
 .sidebar a.active,
 .dropdown-btn.active,
 .sub-dropdown-btn.active {
-  background: #00daef;
+  background: #00daef44;
   color: #fff;
 }
 
@@ -256,12 +190,12 @@ header {
   font-size: 1.2em;
   margin-left: 10px;
   transition: transform 0.2s;
-  color: #00daef;
+  color: whitesmoke;
 }
 .dropdown-btn.active .dropdown-arrow,
 .sub-dropdown-btn.active .dropdown-arrow {
   transform: rotate(90deg);
-  color: #fff;
+  color: #0C2B4E ;
 }
 
 .dropdown-list {
@@ -277,13 +211,13 @@ header {
 .dropdown-list a {
   font-size: 1em;
   padding-left: 50px;
-  color: #222;
+  color: whitesmoke;
   border-radius: 4px;
   transition: background 0.18s, color 0.18s;
 }
 .dropdown-list a:hover, .dropdown-list a.active {
-  background: #e0f8ff;
-  color: #00daef;
+  background: #00daef44;
+  color: white;
 }
 
 /* Sub-list for sub-menu dropdowns */
@@ -323,7 +257,7 @@ header {
 }
 
 #logout-btn {
-  background: linear-gradient(90deg, #00daef 70%, #14e9c6 100%);
+  background: #0C2B4E ;
   color: #fff;
   border-radius: 30px;
   padding: 13px 30px;
@@ -476,7 +410,6 @@ main {
 .custom-description-inner p:nth-of-type(-n+2) {
   text-indent: 40px;
 }
-
 
 .locked-aralin {
   color: #888;
