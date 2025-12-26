@@ -46,18 +46,28 @@ function checkMatch() {
 pass1.oninput = checkMatch;
 pass2.oninput = checkMatch;
 
-loginForm.onsubmit = async function(e) {
+loginForm.onsubmit = async function (e) {
   e.preventDefault();
-  document.getElementById('login-message').textContent = "Logging in...";
-  const { error } = await supa.auth.signInWithPassword({
+  const loginMessage = document.getElementById('login-message');
+  loginMessage.textContent = "Logging in...";
+
+  const { email, password } = {
     email: document.getElementById('login-email').value,
     password: document.getElementById('login-password').value,
-  });
-  if (error) {
-    document.getElementById('login-message').textContent = error.message;
-  } else {
-    document.getElementById('login-message').textContent = "Logged in!";
-    // Or: window.location.href = "landing.html";
+  };
+
+  try {
+    const { error } = await supa.auth.signInWithPassword({ email, password });
+    if (error) {
+      loginMessage.textContent = error.message;
+    } else {
+      loginMessage.textContent = "Logged in!";
+      // Redirect to the landing page after successful login
+      window.location.href = '/iknowbasyon/landing/landing.html';
+    }
+  } catch (err) {
+    // Handle unexpected issues (e.g., network errors)
+    loginMessage.textContent = `Login failed: ${err.message}`;
   }
 };
 signupForm.onsubmit = async function(e) {
