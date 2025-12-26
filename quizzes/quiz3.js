@@ -8,7 +8,6 @@ const questionCards = Array.from(document.querySelectorAll('.quiz-question-card'
 const prevBtn = document.querySelector('.prev-btn');
 const nextBtn = document.querySelector('.next-btn');
 const submitBtn = quizForm.querySelector('.submit-btn');
-const navBtns = document.querySelector('.nav-btns');
 const resultDiv = document.getElementById('quiz-result');
 const backBtn = document.querySelector('.back-btn');
 
@@ -87,7 +86,6 @@ function showQuestion(index) {
       });
     }
   });
-
   prevBtn.style.display = (index > 0) ? "inline-block" : "none";
   nextBtn.style.display = (index < questionCards.length - 1) ? "inline-block" : "none";
   submitBtn.style.display = (index === questionCards.length - 1) ? "inline-block" : "none";
