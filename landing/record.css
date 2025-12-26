@@ -1,0 +1,161 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f7f8fa;
+}
+
+header {
+  background: #0C2B4E;
+  color: white;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 0 12px;
+  box-shadow: 0 2px 10px rgba(0,218,239,0.14);
+  z-index: 1002;
+}
+
+.back-btn {
+  position: absolute;
+  left: 10px;
+  background: none;
+  border: none;
+  color: #EFECE3;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 8px 10px;
+  border-radius: 7px;
+  transition: background 0.18s, color 0.18s;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.back-btn:hover {
+  background: #00daef;
+  color: #fff;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2em;
+  font-weight: 600;
+}
+.filters {
+  width: 70%;
+  margin: 0 auto 20px auto;
+  padding: 10px;
+  text-align: left;
+}
+
+.filters label {
+  font-weight: bold;
+  margin-right: 5px;
+  font-size: 16px;
+}
+.filters select {
+  padding: 6px 12px;
+  font-size: 15px;
+  border-radius: 6px;
+  border: 1px solid #b0b0b0;
+  background: #f9f9f9;
+  color: #333;
+  margin-right: 20px;
+  min-width: 120px;
+  appearance: none;
+  transition: border-color 0.2s;
+}
+.filters select:focus {
+  border-color: #007BFF;
+  outline: none;
+}
+
+table {
+  border-collapse: collapse;
+  width: 70%;
+  margin: 20px auto;
+  box-shadow: 0 2px 8px #ccc;
+  background: #fff;
+  overflow-x: auto;
+}
+th, td {
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+th {
+  background: #007BFF;
+  color: white;
+}
+tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+  .filters {
+    width: 95%;
+    padding: 6px;
+  }
+  table {
+    width: 95%;
+    font-size: 0.98em;
+  }
+}
+
+@media (max-width: 650px) {
+  header h1 {
+    font-size: 1.3em;
+  }
+  .filters label, .filters select {
+    font-size: 14px;
+  }
+  table {
+    width: 100%;
+    font-size: 0.96em;
+    margin: 10px auto;
+  }
+  th, td {
+    padding: 7px 7px;
+  }
+}
+
+@media (max-width: 500px) {
+  header {
+    height: 48px;
+    padding: 0 2px;
+    font-size: 0.9em;
+  }
+  .back-btn {
+    font-size: 0.94em;
+    padding: 5px 8px;
+    left: 4px;
+  }
+  header h1 {
+    font-size: 1em;
+    font-weight: 500;
+  }
+  .filters {
+    padding: 4px;
+    margin-bottom: 12px;
+  }
+  .filters label, .filters select {
+    font-size: 12px;
+    margin-right: 8px;
+  }
+  table {
+    width: 100vw;
+    font-size: 0.92em;
+    /* Make table horizontally scrollable */
+    display: block;
+    overflow-x: auto;
+    margin: 0 auto 12px auto;
+    box-shadow: none;
+  }
+  th, td {
+    padding: 6px 5px;
+    min-width: 70px;
+    font-size: 0.98em;
+  }
+}
