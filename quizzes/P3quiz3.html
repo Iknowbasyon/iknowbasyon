@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I'Know'basyon – Tumpak o Lagapak</title>
+  <link rel="stylesheet" href="P3quiz3.css">
+</head>
+<body>
+  <header>
+    <button class="back-btn" type="button" onclick="window.history.back()" aria-label="Bumalik">← Bumalik</button>
+    <h1>I<span style="font-style: italic;"> 'Know' </span>basyon</h1>
+  </header>
+
+  <!-- Start button OUTSIDE main, no white background under it -->
+  <button id="start-btn" class="start-btn">Start Quiz</button>
+
+  <main>
+    <!-- Directions for the quiz -->
+    <div class="quiz-directions">
+      <strong>Panuto:</strong> Piliin ang <b>TUMPAK</b> kung ang pahayag ay tama, <b>LAGAPAK</b> naman kung ito ay mali.
+    </div>
+    <!-- Quiz container: white background, only shown after clicking Start -->
+    <div id="quiz-container" style="display: none;">
+      <!-- Timer: shown at top of quiz box, never overlaps header -->
+      <div id="timer">Time left: 02:00</div>
+      <form id="tama-mali-quiz" autocomplete="off">
+        <fieldset>
+          <legend class="sr-only">AP o TP Quiz</legend>
+          
+          <!-- Questions -->
+          <div class="quiz-question-card">
+            <span class="question-number">1.</span>
+            <span class="question-text"> Ang sanaysay ay isang maikling sulatin na nagpapahayag ng pananaw o opinyon ng manunulat tungkol sa isang paksa.  </span>
+            <div class="tama-mali-group">
+              <label><input type="radio" name="q1" value="Tama" required> TUMPAK</label>
+              <label><input type="radio" name="q1" value="Mali"> LAGAPAK</label>
+            </div>
+          </div>
+          <div class="quiz-question-card">
+            <span class="question-number">2.</span>
+            <span class="question-text">Ang rebyu ng mga aklat (book review) ay halimbawa ng Akademikong sulatin.</span> 
+            <div class="tama-mali-group">
+              <label><input type="radio" name="q2" value="Tama" required> TUMPAK</label>
+              <label><input type="radio" name="q2" value="Mali"> LAGAPAK</label>
+            </div>
+          </div>
+          <div class="quiz-question-card">
+            <span class="question-number">3.</span>
+            <span class="question-text">Ang manwal o gabay ay isang dokumento na naglalaman ng mga hakbang kung paano gamitin ang isang produkto o makina.</span>
+            <div class="tama-mali-group">
+              <label><input type="radio" name="q3" value="Tama" required> TUMPAK</label>
+              <label><input type="radio" name="q3" value="Mali"> LAGAPAK</label>
+            </div>
+          </div>
+          <div class="quiz-question-card">
+            <span class="question-number">4.</span>
+            <span class="question-text">Ang isang instrukyonal na sulatin (instructional document) ay isang halimbawa ng Akademikong sulatin.</span>
+            <div class="tama-mali-group">
+              <label><input type="radio" name="q4" value="Tama" required> TUMPAK</label>
+              <label><input type="radio" name="q4" value="Mali"> LAGAPAK</label>
+            </div>
+          </div>
+          <div class="quiz-question-card">
+            <span class="question-number">5.</span>
+            <span class="question-text">Tinatawag na ulat teknikal ang dokumentonf naglalaman ng pagsusuri, datos, at resulta ng eksperimento o proyekto.</span>
+            <div class="tama-mali-group">
+              <label><input type="radio" name="q5" value="Tama" required> TUMPAK</label>
+              <label><input type="radio" name="q5" value="Mali"> LAGAPAK</label>
+            </div>
+          </div>
+          <div class="quiz-question-card">
+            <span class="question-number">6.</span>
+            <span class="question-text"> Ang teknikal na sulatin ay ginagamit sa larangan ng pag-aaral.</span>
+            <div class="tama-mali-group">
+              <label><input type="radio" name="q6" value="Tama" required> TUMPAK</label>
+              <label><input type="radio" name="q6" value="Mali"> LAGAPAK</label>
+            </div>
+          </div>
+          <div class="quiz-question-card">
+            <span class="question-number">7.</span>
+            <span class="question-text">Ang posisyong papel ay isang sulatin na nagpapahayag ng paninindigan.</span>
+            <div class="tama-mali-group">
+              <label><input type="radio" name="q7" value="Tama" required> TTMPAK</label>
+              <label><input type="radio" name="q7" value="Mali"> LAGAPAK</label>
+            </div>
+          </div>
+          <div class="quiz-question-card">
+            <span class="question-number">8.</span>
+            <span class="question-text">Ang mga pahayag na "Ang isinagawang eksperimento ay nagpapakita ng positibong resulta" ay isang halimbawa ng pormal na wika.</span>
+            <div class="tama-mali-group">
+              <label><input type="radio" name="q8" value="Tama" required> TUMPAK</label>
+              <label><input type="radio" name="q8" value="Mali"> LAGAPAK</label>
+            </div>
+          </div>
+          <div class="quiz-question-card">
+            <span class="question-number">9.</span>
+            <span class="question-text">Ang Teknikal na sulatin ay may tonong maingat at analitikal.</span>
+            <div class="tama-mali-group">
+              <label><input type="radio" name="q9" value="Tama" required> TUMPAK</label>
+              <label><input type="radio" name="q9" value="Mali"> LAGAPAK</label>
+            </div>
+          </div>
+          <div class="quiz-question-card">
+            <span class="question-number">10.</span>
+            <span class="question-text"> Iniiwasan sa pagsulat ng akademikong sulatin ang pagganit ng balbal at emosyonal na salita.</span>
+            <div class="tama-mali-group">
+              <label><input type="radio" name="q10" value="Tama" required> TUMPAK</label>
+              <label><input type="radio" name="q10" value="Mali"> LAGAPAK</label>
+            </div>
+          </div>
+
+          <!-- Navigation Buttons: Flexbox for spacing -->
+          <div class="nav-btns">
+            <button type="button" class="nav-btn prev-btn">← Previous</button>
+            <button type="button" class="nav-btn next-btn">Next →</button>
+          </div>
+          <button type="submit" class="submit-btn">Isumite ang Sagot</button>
+        </fieldset>
+      </form>
+      <div id="quiz-result" aria-live="polite"></div>
+    </div>
+  </main>
+
+  <script src="P3quiz3.js"></script>
+</body>
+</html>
