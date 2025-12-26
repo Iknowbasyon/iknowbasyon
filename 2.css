@@ -5,7 +5,7 @@ body, html {
   box-sizing: border-box;
   width: 100vw;
   min-height: 100vh;
-  background: #09272b;
+  background: #0C2B4E;
   font-family: 'Inter', Arial, sans-serif;
   display: flex;
   align-items: center;
@@ -13,7 +13,7 @@ body, html {
 }
 
 #container {
-  background: #fff;
+  background: #EFECE3;
   max-width: 400px;
   width: 95vw;
   border-radius: 20px;
@@ -74,7 +74,7 @@ h2 {
 }
 
 .tab-btn.active {
-  background: #00daef;
+  background: #0C2B4E;
   color: #fff;
 }
 
@@ -116,7 +116,7 @@ h2 {
   font-size: 1.12rem;
   border: none;
   border-radius: 8px;
-  background: linear-gradient(90deg,#1976d2 0%, #00daef 100%);
+  background: #0C2B4E ;
   color: #fff;
   font-weight: 700;
   letter-spacing: 1px;
