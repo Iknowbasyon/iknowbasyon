@@ -1,5 +1,5 @@
 // Initialize Supabase Client
-const supabase = supabase.createClient(
+const supabaseArali1Quiz2 = supabase.createClient(
   'https://sinrkmzacjqcdsvyzgpv.supabase.co', // Replace with your Supabase Project URL
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNpbnJrbXphY2pxY2Rzdnl6Z3B2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTgwMDc3MDAsImV4cCI6MjA3MzU4MzcwMH0.X1Drl69l6IkaV518F382-KJEE1z81PiaC-O7GK7pGqs'                         // Replace with your Supabase anon key
 );
