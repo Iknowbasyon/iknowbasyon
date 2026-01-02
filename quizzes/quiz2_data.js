@@ -13,7 +13,7 @@ const prevBtn = document.getElementById('prev-btn');
 const nextBtn = document.getElementById('next-btn');
 const submitBtn = document.getElementById('submit-btn');
 const resultDisplay = document.getElementById('quiz-result');
-const quizForm = document.getElementById('multiple-choice-quiz'); // Define `quizForm`
+const quizForm = document.getElementById('multiple-choice-quiz'); // Correctly define form
 
 // Timer Variables for Quiz 2
 let timer = 2 * 60; // 2 minutes in seconds
@@ -51,12 +51,12 @@ function startTimer() {
 // Fetch Questions for Quiz 2 from Supabase
 async function fetchQuestionsFromSupabaseAralin1Quiz2() {
   const { data, error } = await supabaseAralin1Quiz2
-    .from('Aralin1_Quiz2') // Table name
+    .from('Aralin1_Quiz2') // Replace this table name with your actual table name
     .select('id, question_text, choices, correct_answer');
 
   if (error) {
     console.error("Error fetching questions:", error.message);
-    alert("Failed to fetch questions. Please try again later.");
+    alert("Failed to fetch questions for Quiz 2. Please try again later.");
     return [];
   }
 
@@ -101,8 +101,8 @@ function showQuestion(index) {
   nextBtn.disabled = !userAnswers[index];
   radios.forEach(radio => {
     radio.addEventListener('change', () => {
-      userAnswers[index] = radio.value; // Record user answer
-      nextBtn.disabled = false; // Enable next button
+      userAnswers[index] = radio.value; // Record the user's answer
+      nextBtn.disabled = false; // Enable the "Next" button
     });
   });
 }
@@ -119,16 +119,16 @@ nextBtn.onclick = () => {
 // Start the Quiz
 startBtn.onclick = async function () {
   console.log("Starting quiz...");
-  startBtn.disabled = true; // Disable start button to prevent issues
+  startBtn.disabled = true; // Disable start button to prevent issues while loading questions
 
-  // Fetch questions from Supabase
+  // Fetch Questions for Quiz 2 using the correct function name
   questions = await fetchQuestionsFromSupabaseAralin1Quiz2();
-  if (questions.length === 0) return; // Stop if no questions are loaded
+  if (questions.length === 0) return; // Abort if no questions fetched
 
-  // Initialize answers
+  // Initialize User Answers
   userAnswers = Array(questions.length).fill("");
 
-  // Show quiz container and start timer
+  // Show the Quiz 2 Container and Start
   startBtn.style.display = "none";
   quizContainer.style.display = "block";
   startTimer();
@@ -136,36 +136,6 @@ startBtn.onclick = async function () {
 };
 
 // Submit Quiz
-function submitQuiz() {
-  clearInterval(timerInterval);
-
-  let score = 0;
-  questions.forEach(async (question, index) => {
-    if (!userAnswers[index]) return; // Skip unanswered questions
-
-    // Fetch correct answer from Supabase
-    const { data, error } = await supabaseAralin1Quiz2
-      .from('Aralin1_Quiz2') // Ensure table name matches
-      .select('correct_answer')
-      .eq('id', question.id)
-      .single();
-
-    if (error) {
-      console.error(`Error fetching correct answer for question ${question.id}:`, error.message);
-      return;
-    }
-
-    if (userAnswers[index] === data.correct_answer) score++; // Increment score for correct answers
-  });
-
-  // Display the result
-  resultDisplay.textContent = `Your score: ${score} / ${questions.length}`;
-  prevBtn.disabled = true;
-  nextBtn.disabled = true;
-  submitBtn.disabled = true;
-}
-
-// Form Submit Handler (Optional button click submit)
 quizForm.onsubmit = function (event) {
   event.preventDefault(); // Prevent form submission
   submitQuiz();
