@@ -1,6 +1,6 @@
 // Initialize Supabase Client
 const supabase = supabase.createClient(
-  'https://sinrkmzacjqcdsvyzgpv.supabase.co',
+  'https://supabase.com/dashboard/project/sinrkmzacjqcdsvyzgpv/editor/54155?schema=public',
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNpbnJrbXphY2pxY2Rzdnl6Z3B2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTgwMDc3MDAsImV4cCI6MjA3MzU4MzcwMH0.X1Drl69l6IkaV518F382-KJEE1z81PiaC-O7GK7pGqs'
 );
 
