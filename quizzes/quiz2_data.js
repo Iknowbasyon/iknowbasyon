@@ -48,8 +48,8 @@ function startTimer() {
 }
 
 // Fetch Questions from Supabase
-async function fetchQuestionsFromSupabase() {
-  const { data, error } = await supabase
+async function fetchQuestionsFromSupabaseAralin1Quiz2() {
+  const { data, error } = await supabaseAralin1Quiz2
     .from('Aralin1_Quiz2') // Adjust the table name if needed
     .select('id, question_text, choices, correct_answer');
 
@@ -121,7 +121,7 @@ startBtn.onclick = async function () {
   startBtn.disabled = true; // Disable start button to prevent issues
 
   // Fetch questions from Supabase
-  questions = await fetchQuestionsFromSupabase();
+  questions = await fetchQuestionsFromSupabaseAlrain1Quiz2();
   if (questions.length === 0) return; // Stop if no questions are loaded
 
   // Initialize answers
@@ -143,7 +143,7 @@ function submitQuiz() {
     if (!userAnswers[index]) return; // Skip unanswered questions
 
     // Fetch correct answer from Supabase
-    const { data, error } = await supabase
+    const { data, error } = await supabaseAralin1Quiz2
       .from('Aralin1_Quiz2') // Ensure table name matches
       .select('correct_answer')
       .eq('id', question.id)
