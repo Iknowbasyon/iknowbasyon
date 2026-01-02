@@ -1,10 +1,10 @@
-// Initialize Supabase Client for Quiz 2
+// Initialize Supabase Client
 const supabaseAralin1Quiz2 = supabase.createClient(
-  'https://sinrkmzacjqcdsvyzgpv.supabase.co', // Replace with your Supabase Project URL
+  'https://sinrkmzacjqcdsvyzgpv.supabase.co',
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNpbnJrbXphY2pxY2Rzdnl6Z3B2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTgwMDc3MDAsImV4cCI6MjA3MzU4MzcwMH0.X1Drl69l6IkaV518F382-KJEE1z81PiaC-O7GK7pGqs'
 );
 
-// DOM Elements for Quiz 2
+// DOM References
 const timerDisplay = document.getElementById('timer');
 const startBtn = document.getElementById('start-btn');
 const quizContainer = document.getElementById('quiz-container');
@@ -13,19 +13,19 @@ const prevBtn = document.getElementById('prev-btn');
 const nextBtn = document.getElementById('next-btn');
 const submitBtn = document.getElementById('submit-btn');
 const resultDisplay = document.getElementById('quiz-result');
-const quizForm = document.getElementById('multiple-choice-quiz'); // Correctly define form
+const quizForm = document.getElementById('multiple-choice-quiz'); // Fix for `quizForm`
 
-// Timer Variables for Quiz 2
+// Timer Variables
 let timer = 2 * 60; // 2 minutes in seconds
 let timerInterval;
 let timeUp = false;
 
-// Quiz Variables for Quiz 2
-let questions = []; // Questions fetched dynamically from Supabase
-let userAnswers = []; // User's answers
-let currentQuestionIndex = 0; // Track current question
+// Quiz Variables
+let questions = [];
+let userAnswers = [];
+let currentQuestionIndex = 0;
 
-// Timer Functionality for Quiz 2
+// Timer Functions
 function updateTimerDisplay() {
   const minutes = String(Math.floor(timer / 60)).padStart(2, '0');
   const seconds = String(timer % 60).padStart(2, '0');
@@ -33,7 +33,7 @@ function updateTimerDisplay() {
 }
 
 function startTimer() {
-  timer = 2 * 60; // Reset timer to 2 minutes
+  timer = 2 * 60;
   timeUp = false;
   updateTimerDisplay();
   timerInterval = setInterval(() => {
@@ -48,37 +48,36 @@ function startTimer() {
   }, 1000);
 }
 
-// Fetch Questions for Quiz 2 from Supabase
+// Fetch Questions from Supabase
 async function fetchQuestionsFromSupabaseAralin1Quiz2() {
   const { data, error } = await supabaseAralin1Quiz2
-    .from('Aralin1_Quiz2') // Replace this table name with your actual table name
+    .from('Aralin1_Quiz2') // Ensure this table exists in Supabase
     .select('id, question_text, choices, correct_answer');
 
   if (error) {
     console.error("Error fetching questions:", error.message);
-    alert("Failed to fetch questions for Quiz 2. Please try again later.");
+    alert("Failed to fetch questions. Please try again.");
     return [];
   }
 
-  // Transform data into a usable format
+  // Map and return formatted data
   return data.map(q => ({
     id: q.id,
     q: q.question_text,
-    choices: Object.entries(JSON.parse(q.choices)).map(([key, value]) => `${key}. ${value}`)
+    choices: Object.entries(JSON.parse(q.choices)).map(([key, value]) => `${key}. ${value}`),
   }));
 }
 
-// Render a Question for Quiz 2
+// Render Questions
 function showQuestion(index) {
   const qData = questions[index];
   currentQuestionIndex = index;
 
-  // Build question HTML
   let html = `
     <p><strong>${index + 1}. ${qData.q}</strong></p>
     <div>`;
   for (let i = 0; i < qData.choices.length; i++) {
-    const val = qData.choices[i][0]; // "A", "B", etc.
+    const val = qData.choices[i][0];
     const checked = userAnswers[index] === val ? 'checked' : '';
     html += `
       <label>
@@ -87,48 +86,31 @@ function showQuestion(index) {
       </label>`;
   }
   html += '</div>';
-
-  // Render question in the question area
   questionArea.innerHTML = html;
 
-  // Control navigation button visibility
   prevBtn.style.display = index > 0 ? "inline-block" : "none";
   nextBtn.style.display = index < questions.length - 1 ? "inline-block" : "none";
   submitBtn.style.display = index === questions.length - 1 ? "inline-block" : "none";
 
-  // Disable next button until the question is answered
   const radios = questionArea.querySelectorAll('input[type="radio"]');
   nextBtn.disabled = !userAnswers[index];
   radios.forEach(radio => {
     radio.addEventListener('change', () => {
-      userAnswers[index] = radio.value; // Record the user's answer
-      nextBtn.disabled = false; // Enable the "Next" button
+      userAnswers[index] = radio.value;
+      nextBtn.disabled = false;
     });
   });
 }
 
-// Navigation Button Handlers
-prevBtn.onclick = () => {
-  if (currentQuestionIndex > 0) showQuestion(currentQuestionIndex - 1);
-};
-
-nextBtn.onclick = () => {
-  if (currentQuestionIndex < questions.length - 1) showQuestion(currentQuestionIndex + 1);
-};
-
-// Start the Quiz
+// Start Quiz
 startBtn.onclick = async function () {
   console.log("Starting quiz...");
-  startBtn.disabled = true; // Disable start button to prevent issues while loading questions
+  startBtn.disabled = true;
 
-  // Fetch Questions for Quiz 2 using the correct function name
   questions = await fetchQuestionsFromSupabaseAralin1Quiz2();
-  if (questions.length === 0) return; // Abort if no questions fetched
+  if (questions.length === 0) return;
 
-  // Initialize User Answers
   userAnswers = Array(questions.length).fill("");
-
-  // Show the Quiz 2 Container and Start
   startBtn.style.display = "none";
   quizContainer.style.display = "block";
   startTimer();
@@ -137,6 +119,6 @@ startBtn.onclick = async function () {
 
 // Submit Quiz
 quizForm.onsubmit = function (event) {
-  event.preventDefault(); // Prevent form submission
+  event.preventDefault();
   submitQuiz();
 };
