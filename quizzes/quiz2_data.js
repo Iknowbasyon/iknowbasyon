@@ -13,11 +13,11 @@ const prevBtn = document.getElementById('prev-btn');
 const nextBtn = document.getElementById('next-btn');
 const submitBtn = document.getElementById('submit-btn');
 const resultDisplay = document.getElementById('quiz-result');
-const quizForm = document.getElementById('multiple-choice-quiz'); // Fix for `quizForm`
+const quizForm = document.getElementById('multiple-choice-quiz');
 
 // Timer Variables
 let timer = 2 * 60; // 2 minutes in seconds
-let timerInterval;
+let timerInterval = null;
 let timeUp = false;
 
 // Quiz Variables
@@ -33,14 +33,17 @@ function updateTimerDisplay() {
 }
 
 function startTimer() {
+  console.log("Timer started...");
   timer = 2 * 60;
   timeUp = false;
   updateTimerDisplay();
+  clearInterval(timerInterval); // Clear any existing timer to prevent double-counting
   timerInterval = setInterval(() => {
     timer--;
     updateTimerDisplay();
-    if (timer < 0) {
+    if (timer <= 0) {
       clearInterval(timerInterval);
+      console.log("Timer finished!");
       timerDisplay.textContent = "Time's up!";
       timeUp = true;
       submitQuiz();
@@ -50,34 +53,46 @@ function startTimer() {
 
 // Fetch Questions from Supabase
 async function fetchQuestionsFromSupabase() {
+  console.log("Fetching questions from Supabase...");
   const { data, error } = await supabase
-    .from('Aralin1_Quiz2') // Ensure this table exists in Supabase
+    .from('Aralin1_Quiz2') // Supabase table name
     .select('id, question_text, choices, correct_answer');
 
   if (error) {
     console.error("Error fetching questions:", error.message);
-    alert("Failed to fetch questions. Please try again.");
+    alert("Failed to fetch questions. Please check your database configuration.");
     return [];
   }
 
-  // Map and return formatted data
-  return data.map(q => ({
+  console.log("Raw questions from Supabase:", data);
+
+  // Map and format the questions
+  const formattedQuestions = data.map(q => ({
     id: q.id,
     q: q.question_text,
     choices: Object.entries(JSON.parse(q.choices)).map(([key, value]) => `${key}. ${value}`),
   }));
+
+  console.log("Formatted questions for rendering:", formattedQuestions);
+  return formattedQuestions;
 }
 
-// Render Questions
+// Render a Question on UI
 function showQuestion(index) {
+  if (!questions || questions.length === 0) {
+    console.error("Questions array is empty. Cannot render question.");
+    return;
+  }
+
   const qData = questions[index];
   currentQuestionIndex = index;
+  console.log(`Rendering question ${index + 1}`, qData);
 
   let html = `
     <p><strong>${index + 1}. ${qData.q}</strong></p>
     <div>`;
   for (let i = 0; i < qData.choices.length; i++) {
-    const val = qData.choices[i][0];
+    const val = qData.choices[i][0]; // "A", "B", etc. (First letter)
     const checked = userAnswers[index] === val ? 'checked' : '';
     html += `
       <label>
@@ -86,8 +101,10 @@ function showQuestion(index) {
       </label>`;
   }
   html += '</div>';
-  questionArea.innerHTML = html;
 
+  questionArea.innerHTML = html; // Populate the DOM in the question area
+
+  // Update visibility of navigation buttons
   prevBtn.style.display = index > 0 ? "inline-block" : "none";
   nextBtn.style.display = index < questions.length - 1 ? "inline-block" : "none";
   submitBtn.style.display = index === questions.length - 1 ? "inline-block" : "none";
@@ -96,10 +113,12 @@ function showQuestion(index) {
   nextBtn.disabled = !userAnswers[index];
   radios.forEach(radio => {
     radio.addEventListener('change', () => {
-      userAnswers[index] = radio.value;
-      nextBtn.disabled = false;
+      userAnswers[index] = radio.value; // Save the user's answer
+      nextBtn.disabled = false; // Enable the Next button
     });
   });
+
+  console.log("Next button state:", nextBtn.disabled);
 }
 
 // Start Quiz
@@ -107,14 +126,22 @@ startBtn.onclick = async function () {
   console.log("Starting quiz...");
   startBtn.disabled = true;
 
+  // Fetch questions from Supabase
   questions = await fetchQuestionsFromSupabase();
-  if (questions.length === 0) return;
+  if (questions.length === 0) {
+    alert("No questions found. Please check your database.");
+    startBtn.disabled = false;
+    return;
+  }
 
-  userAnswers = Array(questions.length).fill("");
-  startBtn.style.display = "none";
-  quizContainer.style.display = "block";
-  startTimer();
-  showQuestion(0);
+  console.log("Questions loaded:", questions);
+
+  // Initialize the quiz state
+  userAnswers = Array(questions.length).fill(""); // Clear answers
+  startBtn.style.display = "none"; // Hide start button
+  quizContainer.style.display = "block"; // Show quiz container
+  startTimer(); // Begin the timer
+  showQuestion(0); // Display the first question
 };
 
 // Submit Quiz
@@ -122,3 +149,24 @@ quizForm.onsubmit = function (event) {
   event.preventDefault();
   submitQuiz();
 };
+
+// Handle Quiz Submission
+function submitQuiz() {
+  console.log("Submitting quiz...");
+
+  let score = 0;
+  questions.forEach((question, index) => {
+    if (userAnswers[index] === question.correct_answer) {
+      score++;
+    }
+  });
+
+  console.log(`Final Score: ${score} / ${questions.length}`);
+  resultDisplay.innerHTML = `
+    <p>Your score: ${score} / ${questions.length}</p>
+    <p>Quiz complete!</p>`;
+  quizContainer.style.display = "none";
+  startBtn.style.display = "block";
+  startBtn.disabled = false; // Reenable the start button
+  clearInterval(timerInterval); // Clear the timer
+}
