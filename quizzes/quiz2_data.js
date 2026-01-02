@@ -1,5 +1,5 @@
 // Initialize Supabase Client
-const supabaseAralin1Quiz2 = supabase.createClient(
+const supabase = supabase.createClient(
   'https://sinrkmzacjqcdsvyzgpv.supabase.co',
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNpbnJrbXphY2pxY2Rzdnl6Z3B2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTgwMDc3MDAsImV4cCI6MjA3MzU4MzcwMH0.X1Drl69l6IkaV518F382-KJEE1z81PiaC-O7GK7pGqs'
 );
@@ -49,8 +49,8 @@ function startTimer() {
 }
 
 // Fetch Questions from Supabase
-async function fetchQuestionsFromSupabaseAralin1Quiz2() {
-  const { data, error } = await supabaseAralin1Quiz2
+async function fetchQuestionsFromSupabase() {
+  const { data, error } = await supabase
     .from('Aralin1_Quiz2') // Ensure this table exists in Supabase
     .select('id, question_text, choices, correct_answer');
 
@@ -107,7 +107,7 @@ startBtn.onclick = async function () {
   console.log("Starting quiz...");
   startBtn.disabled = true;
 
-  questions = await fetchQuestionsFromSupabaseAralin1Quiz2();
+  questions = await fetchQuestionsFromSupabase();
   if (questions.length === 0) return;
 
   userAnswers = Array(questions.length).fill("");
