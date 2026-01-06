@@ -1,5 +1,5 @@
 body {
-  background: linear-gradient(120deg, #e4f1fb 0%, #cbefff 100%);
+  background: #EFECE3;
   font-family: 'Montserrat', Arial, sans-serif;
   margin: 0;
   min-height: 100vh;
@@ -7,11 +7,10 @@ body {
 
 header {
   width: 100%;
-  background: #00daef;
-  color: black;
+  background:  #0C2B4E ;
+  color: white;
   padding: 1.8rem 0 1rem 0;
   box-shadow: 0 4px 28px rgba(0,218,239,0.14);
-  border-radius: 0 0 28px 28px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,7 +22,7 @@ header {
   position: absolute;
   left: 1.2rem;
   top: 1.2rem;
-  color: black;
+  color: white;
   background: none;
   border: none;
   border-radius: 7px;
@@ -34,14 +33,16 @@ header {
   padding: 7px 15px;
   transition: background 0.2s;
 }
-.back-btn:hover { background: #e0f7fa; }
+.back-btn:hover {
+  background: linear-gradient(90deg,#1976d2 65%, #00daef 100%);
+}
 
 header h1 {
   font-size: 2.3rem;
   font-weight: 800;
   margin: 0 0 0.3rem 0;
   letter-spacing: 1.5px;
-  color: black;
+  color: #EFECE3;
   text-shadow: 0 2px 10px rgba(25,118,210,0.10);
   line-height: 1;
 }
@@ -62,16 +63,18 @@ main {
   box-shadow: 0 2px 10px rgba(0,218,239,0.07);
   padding: 1.1rem 1.2rem;
   font-size: 1.16rem;
-  color: #1976d2;
+  color: black;
   line-height: 1.6;
   font-weight: 600;
   text-align: center;
+  font-family: Noto Sans, Arial, sans-serif;
 }
+
 
 .start-btn {
   display: block;
   margin: 1.7rem auto 1.3rem auto;
-  background: linear-gradient(90deg,#00daef 75%, #1976d2 100%);
+  background: #0C2B4E ;
   color: #fff;
   border: none;
   border-radius: 14px;
@@ -92,7 +95,7 @@ main {
 }
 
 #quiz-container {
-  background: #fff;
+  background: #e6faff;
   border-radius: 18px;
   box-shadow: 0 8px 22px rgba(0,218,239,0.09), 0 1px 6px rgba(25,118,210,0.10);
   padding: 1.7rem 1.3rem 1.3rem 1.3rem;
@@ -152,7 +155,7 @@ main {
 .question-number {
   font-weight: 700;
   margin-bottom: 0.35rem;
-  color: #00daef;
+  color: black;
   font-size: 1.11rem;
   background: #e0f7fa;
   padding: 2px 13px;
@@ -184,7 +187,7 @@ main {
   padding: 7px 10px;
   cursor: pointer;
   transition: background 0.13s, border 0.13s;
-  border: 1.5px solid #00daef;
+  border: 2px solid black;
   margin: 0;
   min-width: 44px;
   justify-content: flex-start;
@@ -231,15 +234,20 @@ main {
   font-weight: 700;
   color: #1976d2;
   text-align: center;
-  margin-top: 1.15rem;
+  margin-top: 1.15rem; /* ✅ Changed from 2rem auto 1.5rem auto */
   min-height: 24px;
-  width: 100%;
+  width: 100%; /* ✅ Changed from 92% */
   background: #e0f7fa;
-  border-radius: 7px;
-  padding: 0.7rem;
+  border-radius: 7px; /* ✅ Changed from 12px */
+  padding: 0.7rem; /* ✅ Changed from 1.2rem 1.5rem */
   transition: color 0.18s;
   display: block;
+  box-shadow: none; /* ✅ Removed shadow */
+  position: relative;
+  z-index: 10;
+  box-sizing: border-box;
 }
+
 
 /* Accessibility: visually hidden legend */
 .sr-only {
@@ -331,14 +339,22 @@ main {
   }
 }
 
+/* Navigation Buttons */
+.nav-btns {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.2rem;
+}
+
 .next-btn {
   background: linear-gradient(90deg, #00daef 75%, #1976d2 100%);
   color: #fff;
   border: none;
   border-radius: 12px;
   padding: 0.9rem 2.1rem;
-  font-size: 1.14rem;
-  font-weight: 700;
+  font-size:  1.14rem;
+  font-weight:  700;
   cursor: pointer;
   box-shadow: 0 4px 18px rgba(25,118,210,0.12);
   letter-spacing: 1px;
@@ -363,34 +379,14 @@ main {
   opacity: 0.7;
 }
 
-.prev-btn {
-  background: linear-gradient(90deg, #e0f7fa 85%, #b2ebf2 100%);
-  color: #1976d2;
-  border: none;
-  border-radius: 12px;
-  padding: 0.9rem 2.1rem;
-  font-size: 1.14rem;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(25,118,210,0.10);
-  letter-spacing: 1px;
-  transition: background 0.22s, color 0.2s, box-shadow 0.2s, opacity 0.2s;
-  outline: none;
-  margin-right: auto;
-}
-
-.prev-btn:hover,
-.prev-btn:focus {
-  background: linear-gradient(90deg, #b2ebf2 75%, #00daef 100%);
-  color: #135c91;
-  box-shadow: 0 6px 18px rgba(0,218,239,0.12);
-  opacity: 0.96;
-}
-
-.prev-btn:disabled {
-  background: linear-gradient(90deg, #f0f7fa 75%, #e0eaf6 100%);
-  color: #bdbdbd;
-  cursor: not-allowed;
-  box-shadow: none;
-  opacity: 0.7;
+/* Mobile responsive */
+@media (max-width: 700px) {
+  .next-btn {
+    padding: 0.6rem 1.2rem;
+    font-size:  0.95rem;
+  }
+  
+  .nav-btns {
+    margin-top: 0.8rem;
+  }
 }
