@@ -58,7 +58,7 @@ async function checkAuth() {
 
 function redirectToLogin() {
   alert('Please login first to view your records.');
-  window.location. href = 'index.html';
+  window.location. href = 'iknowbasyon/index.html';
 }
 
 // === FETCH QUIZ RESULTS ===
@@ -449,4 +449,5 @@ document. addEventListener('DOMContentLoaded', () => {
   } else {
     console.error('❌ Clear button not found!  Make sure button ID is "clear-records-btn"');
   }
+
 });
