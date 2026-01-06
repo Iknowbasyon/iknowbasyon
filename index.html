@@ -2,40 +2,112 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Login & Sign Up</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Google Fonts for a modern look -->
-  <link href="https://fonts.googleapis.com/css?family=Inter:400,600,700&display=swap" rel="stylesheet">
+  <title>I'Know'basyon - Login & Sign Up</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
   <link rel="stylesheet" href="2.css">
-  </head>
+  
+  <!-- Favicon (optional) -->
+  <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
+</head>
 <body>
   <div id="container">
-    <img src="12.png" alt="Logo" id="logo">
+    <!-- Logo -->
+    <img src="12.png" alt="I'Know'basyon Logo" id="logo">
+    
+    <!-- Tab Buttons -->
     <div class="tabs">
       <button class="tab-btn active" id="login-tab" type="button">Log In</button>
       <button class="tab-btn" id="signup-tab" type="button">Sign Up</button>
     </div>
+    
     <!-- LOGIN FORM -->
-    <form class="form visible" id="login-form" autocomplete="on">
-      <input type="email" id="login-email" placeholder="Email" required>
-      <input type="password" id="login-password" placeholder="Password" required>
-      <button type="submit">Log In</button>
-      <a href="#" id="forgot-link">Forgot password?</a>
-      <div class="message" id="login-message"></div>
+    <form class="form visible" id="login-form" autocomplete="on" novalidate>
+      <label for="login-email" class="sr-only">Email Address</label>
+      <input 
+        type="email" 
+        id="login-email" 
+        name="email"
+        placeholder="Email" 
+        required
+        autocomplete="email"
+        aria-label="Email address"
+      >
+      
+      <label for="login-password" class="sr-only">Password</label>
+      <input 
+        type="password" 
+        id="login-password" 
+        name="password"
+        placeholder="Password" 
+        required
+        autocomplete="current-password"
+        aria-label="Password"
+      >
+      
+      <button type="submit" class="submit-btn">Log In</button>
+      
+      <a href="#" id="forgot-link" class="forgot-link">Forgot password? </a>
+      
+      <div class="message" id="login-message" role="alert" aria-live="polite"></div>
     </form>
+    
     <!-- SIGN UP FORM -->
-    <form class="form" id="signup-form" autocomplete="on">
-      <input type="email" id="signup-email" placeholder="Email" required>
-      <input type="password" id="signup-password" placeholder="Password" required>
+    <form class="form" id="signup-form" autocomplete="on" novalidate>
+      <label for="signup-email" class="sr-only">Email Address</label>
+      <input 
+        type="email" 
+        id="signup-email" 
+        name="email"
+        placeholder="Email" 
+        required
+        autocomplete="email"
+        aria-label="Email address for signup"
+      >
+      
+      <label for="signup-password" class="sr-only">Password</label>
+      <input 
+        type="password" 
+        id="signup-password" 
+        name="new-password"
+        placeholder="Password (min 6 characters)" 
+        required
+        minlength="6"
+        autocomplete="new-password"
+        aria-label="Create password"
+      >
+      
       <div class="row">
-        <input type="password" id="signup-password2" placeholder="Retype Password" required>
-        <span id="password-match-status"></span>
+        <label for="signup-password2" class="sr-only">Confirm Password</label>
+        <input 
+          type="password" 
+          id="signup-password2" 
+          name="confirm-password"
+          placeholder="Retype Password" 
+          required
+          minlength="6"
+          autocomplete="new-password"
+          aria-label="Confirm password"
+        >
+        <span id="password-match-status" aria-live="polite"></span>
       </div>
-      <button type="submit">Sign Up</button>
-      <div class="message" id="signup-message"></div>
+      
+      <button type="submit" class="submit-btn">Sign Up</button>
+      
+      <div class="message" id="signup-message" role="alert" aria-live="polite"></div>
     </form>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-  <script src="2.js"></script>
+  
+  <!-- ✅ Load Supabase library (version 2) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
+  <!-- ✅ Load login script -->
+  <script src="2-data.js"></script>
 </body>
 </html>
