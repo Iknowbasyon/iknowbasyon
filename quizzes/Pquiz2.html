@@ -3,20 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>I'Know'basyon</title>
+  <title>I'Know'basyon – Water Filter Quiz</title>
   <link rel="stylesheet" href="Pquiz2.css">
 </head>
 <body>
   <header>
-    <button class="back-btn" onclick="window.history.back()" aria-label="Bumalik">← Bumalik</button>
-    <h1>I<i>'Know' </i>basyon</h1>
-    <p>Hibla ng Alaala</p>
+    <button class="back-btn" type="button" onclick="window.history.back()" aria-label="Bumalik">Bumalik</button>
+    <h1>I<span style="font-style:  italic;"> 'Know' </span>basyon</h1>
   </header>
 
   <main>
-    <!-- Embedded Educaplay Crossword Puzzle -->
-    <div class="crossword-embed" style="display: flex; justify-content: center; margin-top: 40px;">
-      <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/BeOr_tbdQTU?si=Pr8ZFfOj_LY6ko5a" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <!-- Video Section (shows first) -->
+    <section id="video-section" class="video-section">
+      <div class="video-container">
+        <div class="video-title"><strong>Panuto:</strong>   Panooring mabuti ang bidyo patungkol sa Improvised Water Filter</div>
+        <div class="video-embed">
+          <iframe 
+            width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/_ShIjJUQEdY?si=xFzrkVRFHOm1mEYu" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+      <button id="proceed-btn" class="proceed-btn">Next</button>
+    </section>
+
+    <!-- Quiz Directions -->
+    <div id="quiz-directions" class="quiz-directions" style="display:none;">
+      <strong>Panuto:</strong> Basahin ang bawat tanong na may kaugnayan sa pinanood at piliin ang tamang sagot.
+    </div>
+
+    <!-- ✅ FIXED: Quiz container with dynamic question area -->
+    <div id="quiz-container" style="display:  none;">
+      <div id="timer">Time left: 02:00</div>
+      <form id="multiple-choice-quiz" autocomplete="off">
+        <fieldset>
+          <legend class="sr-only">Water Filter Quiz</legend>
+          
+          <!-- ✅ Dynamic question area - JavaScript will populate this -->
+          <div id="question-area"></div>
+          
+        </fieldset>
+      </form>
+      <div id="quiz-result" aria-live="polite"></div>
+    </div>
   </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="Pquiz2_data2.js"></script>
 </body>
 </html>
