@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I'Know'basyon – Tama o Mali Quiz</title>
+  <link rel="stylesheet" href="P4quiz1.css">
+</head>
+<body>
+  <header>
+    <button class="back-btn" type="button" onclick="window.history.back()" aria-label="Bumalik">Bumalik</button>
+    <h1>I<span style="font-style: italic;"> 'Know' </span>basyon</h1>
+  </header>
+
+  <!-- Start button OUTSIDE main, no white background under it -->
+  <button id="start-btn" class="start-btn">Start Quiz</button>
+
+  <main>
+    <!-- Directions for the quiz -->
+    <div class="quiz-directions">
+      <strong>Panuto:</strong> Piliin ang <b>Teksto</b> kung wasto ang pahayag, <b>I Know</b> naman kung ito ay mali.
+    </div>
+    <!-- Quiz container: white background, only shown after clicking Start -->
+    <div id="quiz-container" style="display: none;">
+      <!-- Timer: shown at top of quiz box, never overlaps header -->
+      <div id="timer">Time left: 02:00</div>
+      <form id="tama-mali-quiz" autocomplete="off">
+        <fieldset>
+          <legend class="sr-only">Teksto o I know</legend>
+          
+          <!-- Questions -->
+          <div class="quiz-question-card">
+            <span class="question-number">1.</span>
+            <span class="question-text"> Ang tekstong persuweysib ay isang uri ng di-piksiyon na pagsulat upang kumbinsihin ang mga mambabasa na sumang-ayon sa manunulat hinggil sa isang isyu. </span>
+            <div class="tama-mali-group">
+              <label><input type="radio" name="q1" value="Teksto" required> Teksto</label>
+              <label><input type="radio" name="q1" value="I Know"> I Know</label>
+            </div>
+          </div>
+          <div class="quiz-question-card">
+            <span class="question-number">2.</span>
+            <span class="question-text">Layunin ng tekstong prosidyural  na himukin ang mambabasa na kumilos o gumawa ng isang bagay na naaayon sa kagustuhan ng manunulat.</span> 
+            <div class="tama-mali-group">
+              <label><input type="radio" name="q2" value="Teksto" required> Teksto</label>
+              <label><input type="radio" name="q2" value="I Know"> I Know</label>
+            </div>
+          </div>
+          <div class="quiz-question-card">
+            <span class="question-number">3.</span>
+            <span class="question-text">Tinatawag na tekstong argumentatibo ang teksto na nangangailangang ipagtanggol ng manunulat ang posisyon sa isang tiyak na paksa o usapin gamit ang mga ebidensiya mula sa personal na karanasan,
+              kaugnay na mga literatura at pag-aaral, ebidensiyang kasaysayan, at resulta ng empirikal na pananaliksik.</span>
+            <div class="tama-mali-group">
+              <label><input type="radio" name="q3" value="Teksto" required> Teksto</label>
+              <label><input type="radio" name="q3" value="I Know"> I Know</label>
+            </div>
+          </div>
+          <div class="quiz-question-card">
+            <span class="question-number">4.</span>
+            <span class="question-text">Ang tekstong naratibo ay naglalahad o nagsasalaysay ng mga pangyayari o kaganapan.</span>
+            <div class="tama-mali-group">
+              <label><input type="radio" name="q4" value="Teksto" required> Teksto</label>
+              <label><input type="radio" name="q4" value="I Know"> I Know</label>
+            </div>
+          </div>
+          <div class="quiz-question-card">
+            <span class="question-number">5.</span>
+            <span class="question-text"> Inilalarawan ng tekstong impormatibo ang isang bagay, tao, lugar, karanasan, sitwasyon at iba pa.</span>
+            <div class="tama-mali-group">
+              <label><input type="radio" name="q5" value="Teksto" required> Teksto</label>
+              <label><input type="radio" name="q5" value="I Know"> I Know</label>
+            </div>
+          </div>
+          <div class="quiz-question-card">
+            <span class="question-number">6.</span>
+            <span class="question-text">Tinutukoy na teksto ang anumang uri ng sulating mababasa ninuman.</span>
+            <div class="tama-mali-group">
+              <label><input type="radio" name="q6" value="Teksto" required> Teksto</label>
+              <label><input type="radio" name="q6" value="I Know"> I Know</label>
+            </div>
+          </div>
+          <div class="quiz-question-card">
+            <span class="question-number">7.</span>
+            <span class="question-text">Nilalaman ng tekstong deskriptibo ay mula sa mga aktuwal na datos, katotohanan, o pangyayari.</span>
+            <div class="tama-mali-group">
+              <label><input type="radio" name="q7" value="Teksto" required> Teksto</label>
+              <label><input type="radio" name="q7" value="I Know"> I Know</label>
+            </div>
+          </div>
+          <div class="quiz-question-card">
+            <span class="question-number">8.</span>
+            <span class="question-text">Ang tekstong nagbibigay ng impormasyon at instruksyon kung paanong isasagawa ang isang tiyak na bagay ay tinatawag na prosidyural.</span>
+            <div class="tama-mali-group">
+              <label><input type="radio" name="q8" value="Teksto" required> Teksto</label>
+              <label><input type="radio" name="q8" value="I Know"> I Know</label>
+            </div>
+          </div>
+          <div class="quiz-question-card">
+            <span class="question-number">9.</span>
+            <span class="question-text">Nilalayon ng tekstong naratibo na magpahayag ng mga pangyayari na may maayos na pagkakasunod-sunod at kung maaari ay hindi sa kabagot-bagot na pamamaraan upang mahuli ang atensyon ng mambabasa.</span>
+            <div class="tama-mali-group">
+              <label><input type="radio" name="q9" value="Teksto" required> Teksto</label>
+              <label><input type="radio" name="q9" value="I Know"> I Know</label>
+            </div>
+          </div>
+          <div class="quiz-question-card">
+            <span class="question-number">10.</span>
+            <span class="question-text">Ipinaliliwanag ng tekstong impormatibo sa mga mambabasa ang anumang paksa na matatagpuan sa tunay na daigdig at makapaghatid ng impormasyong hindi nababahiran ng personal na pananaw o opinyon ng may akda.</span>
+            <div class="tama-mali-group">
+              <label><input type="radio" name="q10" value="Teksto" required> Teksto</label>
+              <label><input type="radio" name="q10" value="I Know"> I Know</label>
+            </div>
+          </div>
+
+          <!-- Navigation Buttons: Flexbox for spacing -->
+          <div class="nav-btns">
+            <button type="button" class="nav-btn next-btn">Next →</button>
+          </div>
+          <button type="submit" class="submit-btn">Isumite ang Sagot</button>
+        </fieldset>
+      </form>
+      <div id="quiz-result" aria-live="polite"></div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="P4quiz1_data1.js"></script> 
+</body>
+</html>
