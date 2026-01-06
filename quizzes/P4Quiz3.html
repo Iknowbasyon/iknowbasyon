@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I'Know'basyon – Multiple Choice Quiz</title>
+  <link rel="stylesheet" href="P4quiz2.css">
+</head>
+<body>
+  <header>
+    <button class="back-btn" id="back-btn" type="button" onclick="window.history.back()" aria-label="Bumalik">Bumalik</button>
+    <h1>I<span style="font-style: italic;"> 'Know' </span>basyon</h1>
+  </header>
+
+  <button id="start-btn" class="start-btn">Start Quiz</button>
+
+  <main>
+    <div class="quiz-directions">
+      <strong>Panuto:</strong> Basahin nang mabuti ang bawat tanong. Pumili ng tamang sagot sa bawat bilang.
+    </div>
+    <div id="quiz-container" style="display:  none;">
+      <div id="timer">Time left: 02:00</div>
+      <form id="multiple-choice-quiz" autocomplete="off">
+        <fieldset>
+          <legend class="sr-only">Multiple Choice Quiz</legend>
+          <div id="question-area"></div>
+          <div class="nav-btns" style="display:flex;justify-content:space-between;gap:8px;margin-top:0.5rem;">
+            <button type="button" class="next-btn" id="next-btn">Next →</button>
+            <button type="submit" class="submit-btn" id="submit-btn" style="display:none;">Isumite ang Sagot</button>
+          </div>
+        </fieldset>
+      </form>
+      <div id="quiz-result" aria-live="polite"></div>
+    </div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="P4quiz3_data3.js"></script>
+</body>
+</html>
