@@ -5,45 +5,202 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>I'Know'basyon</title>
   <link rel="stylesheet" href="/iknowbasyon/quizzes/Unangaralin.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
+<body>
   <header>
-    <button class="back-btn" onclick="location.href='/iknowbasyon/landing/landing.html'" aria-label="Bumalik">← Bumalik</button>
+    <button class="back-btn" onclick="location.href='landing.html'" aria-label="Bumalik">Bumalik</button>
   </header>
-  <img src="/iknowbasyon/image/13.png" class="headerLogo" alt="logo">
+  <img src="13.png" class="headerLogo" alt="logo">
 
   <main>
     <div class="custom-description-inner">
       <b>Aralin 1</b>
       <div class="inner-text">
-        <p>"Ugnayan ng awdyens, layon, at konteksto sa tekstong akademiko at teknikal"</p>
+        <p><b>"Ugnayan ng awdyens, layon, at konteksto sa tekstong akademiko at teknikal"</b></p>
       </div>
     </div>
 
     <div class="box-container">
       <!-- Box 1 -->
-      <a href="Quiz1.html" class="feature-box" style="text-decoration: none; color: inherit;">
+      <a href="/iknowbasyon/quizzes/Quiz1.html" class="feature-box" id="quiz1-box" style="text-decoration: none; color: inherit;">
         <div class="feature-logo" aria-label="Lightbulb logo">💡</div>
-        <div class="feature-title">I'know'basyon: Tuklas kaalaman</div>
+        <div class="feature-title">I'know'basyon:  Tuklas kaalaman</div>
         <div class="feature-desc">
         </div>
       </a>
       <!-- Box 2 -->
-      <a href="Quiz2.html" class="feature-box" style="text-decoration: none; color: inherit;">
+      <a href="/iknowbasyon/quizzes/Quiz2.html" class="feature-box" id="quiz2-box" style="text-decoration: none; color:  inherit;">
         <div class="feature-logo" aria-label="Trophy logo">🧠</div>
         <div class="feature-title">Laro ng Talino</div>
         <div class="feature-desc">
         </div>
       </a>
       <!-- Box 3 -->
-      <a href="Quiz3.html" class="feature-box" style="text-decoration: none; color: inherit;">
+      <a href="/iknowbasyon/quizzes/Quiz3.html" class="feature-box" id="quiz3-box" style="text-decoration: none; color: inherit;">
         <div class="feature-logo" aria-label="Brain logo">🏆</div>
-        <div class="feature-title">Sagot ko! Panalo ako!</div>
+        <div class="feature-title">Sagot ko! Panalo ako! </div>
         <div class="feature-desc">
         </div>
       </a>
     </div>
   </main>
   
-  <script src="/iknowbayon/quizzes/quiz1.js"></script>
+  <!-- Toast notification for real-time updates -->
+  <div id="unlock-toast" style="display: none;"></div>
+  
+  <script src="/iknowbasyon/quizzes/quiz1.js"></script>
+  
+  <script>
+    (function() {
+      console.log('🔔 Setting up real-time unlock listener for Aralin 1');
+      
+      const SUPABASE_URL = 'https://sinrkmzacjqcdsvyzgpv.supabase.co';
+      const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNpbnJrbXphY2pxY2Rzdnl6Z3B2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTgwMDc3MDAsImV4cCI6MjA3MzU4MzcwMH0.X1Drl69l6IkaV518F382-KJEE1z81PiaC-O7GK7pGqs';
+      const supaClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+      
+      const ARALIN = 1;
+
+      // Show toast notification
+      function showToast(message, type = 'success') {
+        const toast = document.getElementById('unlock-toast');
+        if (!toast) return;
+        
+        const bgColor = type === 'success' ? '#28a745' : '#dc3545';
+        const icon = type === 'success' ?  '🎉' : '🔒';
+        
+        toast.style.cssText = `
+          display: block;
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          background: ${bgColor};
+          color: white;
+          padding: 15px 25px;
+          border-radius: 8px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+          z-index:  10000;
+          font-weight: 600;
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          animation:  slideIn 0.3s ease;
+        `;
+        toast.textContent = `${icon} ${message}`;
+        
+        // Add animation
+        if (! document.getElementById('toast-style')) {
+          const style = document.createElement('style');
+          style.id = 'toast-style';
+          style.textContent = `
+            @keyframes slideIn {
+              from { transform: translateX(400px); opacity: 0; }
+              to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+              from { transform:  translateX(0); opacity: 1; }
+              to { transform: translateX(400px); opacity: 0; }
+            }
+          `;
+          document.head.appendChild(style);
+        }
+        
+        // Hide after 3 seconds
+        setTimeout(() => {
+          toast.style. animation = 'slideOut 0.3s ease';
+          setTimeout(() => {
+            toast.style. display = 'none';
+          }, 300);
+        }, 3000);
+      }
+
+      // Add visual effect to unlocked box
+      function highlightBox(gawain) {
+        const boxId = `quiz${gawain}-box`;
+        const box = document.getElementById(boxId);
+        
+        if (box) {
+          // Add pulse animation
+          box.style.animation = 'pulse 1s ease 3';
+          
+          // Add pulse keyframes if not exists
+          if (! document.getElementById('pulse-style')) {
+            const style = document.createElement('style');
+            style.id = 'pulse-style';
+            style.textContent = `
+              @keyframes pulse {
+                0%, 100% { transform: scale(1); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+                50% { transform: scale(1.05); box-shadow: 0 8px 20px rgba(40, 167, 69, 0.4); }
+              }
+            `;
+            document.head.appendChild(style);
+          }
+        }
+      }
+
+      // Setup real-time subscription
+      function setupRealtimeUnlock() {
+        const subscription = supaClient
+          . channel('aralin1-unlocks')
+          .on(
+            'postgres_changes',
+            {
+              event: '*', // Listen to all events (INSERT, UPDATE, DELETE)
+              schema: 'public',
+              table: 'gawain_global_unlock',
+              filter:  `aralin=eq.${ARALIN}`
+            },
+            (payload) => {
+              console.log('🔓 Unlock change detected:', payload);
+              
+              const eventType = payload.eventType;
+              const gawain = payload.new?. gawain || payload.old?. gawain;
+              
+              if (eventType === 'INSERT') {
+                // New unlock
+                console.log(`✅ Gawain ${gawain} was unlocked! `);
+                showToast(`Activity ${gawain} has been unlocked! `, 'success');
+                highlightBox(gawain);
+                
+                // Reload after showing notification
+                setTimeout(() => {
+                  window.location.reload();
+                }, 2000);
+                
+              } else if (eventType === 'DELETE') {
+                // Lock removed
+                console.log(`🔒 Gawain ${gawain} was locked!`);
+                showToast(`Activity ${gawain} has been locked!`, 'error');
+                
+                // Reload after showing notification
+                setTimeout(() => {
+                  window.location. reload();
+                }, 2000);
+              }
+            }
+          )
+          .subscribe((status) => {
+            if (status === 'SUBSCRIBED') {
+              console.log('✅ Real-time subscription active for Aralin', ARALIN);
+            } else if (status === 'CHANNEL_ERROR') {
+              console.error('❌ Real-time subscription error');
+            }
+          });
+        
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+          console.log('🔌 Unsubscribing from real-time updates');
+          subscription.unsubscribe();
+        });
+        
+        return subscription;
+      }
+
+      // Initialize when page loads
+      window.addEventListener('load', function() {
+        console.log('🚀 Unangaralin.html loaded - starting real-time listener');
+        setupRealtimeUnlock();
+      });
+      
+    })();
+  </script>
 </body>
 </html>
