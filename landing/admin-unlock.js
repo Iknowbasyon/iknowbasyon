@@ -20,7 +20,7 @@ const adminEmail = localStorage.getItem('adminEmail');
 
 if (!isAdmin) {
   alert('⛔ Admin access only!');
-  window.location. href = 'landing.html';
+  window.location. href = '/iknowbasyon/landing/landing.html';
 } else {
   console.log('👑 Admin panel accessed by:', adminEmail);
   // Display admin email
@@ -120,4 +120,5 @@ window.toggleAralin = async function(aralinNumber, isCurrentlyUnlocked) {
 };
 
 // Initialize
+
 loadUnlockedAralins();
