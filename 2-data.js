@@ -134,7 +134,7 @@ if (loginForm) {
         
         // Wait for session to be saved, then redirect
         setTimeout(() => {
-          window.location.href = 'landing.html';
+          window.location.href = '/iknowbasyon/landing/landing.html';
         }, 500);
       }
     } catch (err) {
@@ -220,5 +220,6 @@ if (signupForm) {
 window.supaLogin = supaLogin;
 window.isAdmin = isAdmin;
 window. ADMIN_EMAILS = ADMIN_EMAILS;
+
 
 console.log('✅ Login page JavaScript fully loaded');
