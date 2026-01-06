@@ -9,22 +9,22 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 const aralinConfig = {
   UnangAralin: {
     password:  "password1",
-    url: "Unangaralin.html",
+    url: "/iknowbasyon/quizzes/Unangaralin.html",
     number: 1
   },
   PangalawangAralin: {
     password: "password2",
-    url: "Pangalawangaralin.html",
+    url: "/iknowbasyon/quizzes/Pangalawangaralin.html",
     number: 2
   },
   PangatlongAralin: {
     password: "password3",
-    url: "Pangatlongaralin.html",
+    url: "/iknowbasyon/quizzes/Pangatlongaralin.html",
     number: 3
   },
   PangapatAralin: {
     password:  "password4",
-    url:  "PangapatAralin.html",
+    url:  "/iknowbasyon/quizzes/PangapatAralin.html",
     number: 4
   }
 };
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       
       if (isAdmin) {
         console.log('✅ Admin access granted to Itala');
-        window.location.href = "record.html";
+        window.location.href = "/iknowbasyon/landing/record.html";
       } else {
         console.log('❌ Student - Itala access denied');
         alert("🔒 Only admins can access 'Itala'.\n\nPlease contact your teacher for access.");
@@ -209,4 +209,5 @@ function subscribeToUnlockChanges() {
     .subscribe();
   
   console.log('📡 Real-time subscription active');
+
 }
