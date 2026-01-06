@@ -1,17 +1,16 @@
-<!DOCTYPE html>
+<! DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>I'Know'basyon</title>
-  <link rel="stylesheet" href="/iknowbasyon/landing/1.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Segoe+UI:400,700&display=swap">
+  <link rel="stylesheet" href="1.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css? family=Segoe+UI:400,700&display=swap">
   <script defer src="/iknowbasyon/landing/1.js"></script>
 </head>
 <body>
   <header>
     <div class="header-title">
-      <!-- Optional: Add site title or logo text here -->
     </div>
     <button class="menu-btn" id="menuToggle" aria-label="Open menu">
       <span></span>
@@ -22,9 +21,20 @@
   <img src="/iknowbasyon/image/13.png" class="headerLogo" alt="logo">
   <nav id="sidebar" class="sidebar">
     <ul>
-      <li><a href="registration.html" onclick="showPage('registration'); return false;">Magrehistro</a></li>
+      <li><a href="#" onclick="showPage('reminder'); return false;">Mga Paalala</a></li>
       <li><a href="#" onclick="showPage('home'); return false;">Pangunahing Pahina</a></li>
-      <li><a href="#" onclick="showPage('about'); return false;">Tungkol sa</a></li>
+            
+      <!-- Tungkol sa (New Dropdown Like Mga Aralin) -->
+      <li class="dropdown">
+        <button class="dropdown-btn" onclick="toggleDropdown('aboutDropdown', this)">
+          Tungkol sa <span class="dropdown-arrow">&#9662;</span>
+        </button>
+        <ul id="aboutDropdown" class="dropdown-list">
+          <li><a href="#" onclick="showPage('about'); return false;">I'KNOW'BASYON</a></li>
+          <li><a href="#" onclick="showPage('Mag-aaral'); return false;">Mga Mag-aaral</a></li>
+          <li><a href="#" onclick="showPage('May-likha'); return false;">May-likha</a></li>
+        </ul>
+      </li>
       <li class="dropdown">
         <button class="dropdown-btn" onclick="toggleDropdown('aralinDropdown', this)">
           Mga Aralin <span class="dropdown-arrow">&#9662;</span>
@@ -33,72 +43,147 @@
           <!-- Unang Aralin -->
           <li class="dropdown">
             <a href="#" class="sub-dropdown-btn locked-aralin" data-aralin="UnangAralin">
-                Unang Aralin
+              Unang Aralin
             </a>
           </li>
           <!-- Pangalawang Aralin -->
           <li class="dropdown">
-           <a href="#" class="sub-dropdown-btn locked-aralin" data-aralin="PangalawangAralin">
-                Pangalawang Aralin
-          </a>
+             <a href="#" class="sub-dropdown-btn locked-aralin" data-aralin="PangalawangAralin">
+             Pangalawang Aralin
+            </a>
           </li>
           <!-- Pangatlong Aralin -->
           <li class="dropdown">
-            <a href="#" class="sub-dropdown-btn locked-aralin" data-aralin="PangatlongAralin">
-                Pangatlong Aralin
+           <a href="#" class="sub-dropdown-btn locked-aralin" data-aralin="PangatlongAralin">
+              Pangatlong Aralin
             </a>
           </li>
           <!-- Pang-apat na Aralin -->
           <li class="dropdown">
-           <a href="#" class="sub-dropdown-btn locked-aralin" data-aralin="PangapatAralin">
+            <a href="#" class="sub-dropdown-btn locked-aralin" data-aralin="PangapatAralin">
               Pang-apat na Aralin
-          </a>
+            </a>
           </li>
         </ul>
       </li>
-      <li><a href="/iknowbasyon/landing/record.html" onclick="showPage('record'); return false;">Itala</a></li>
+      <li><a href="#" onclick="window.location.href='/iknowbasyon/landing/record.html'; return false;" class="locked-itala" id="italaLink">Itala<span title="Admin only" style="color: #ff6b6b;">🔒</span></a></li>
+      <!-- Add this right after the Itala link -->
+      <li class="admin-only" style="display: none;">
+      <a href="admin-panel.html">
+    🔐 Unlock Aralin <span style="color: #ffd700;">⭐</span>
+  </a>
+</li>
       <li class="logout-li">
-       <button id="logout-btn" onclick="location.href='/iknowbasyon/index.html'">Log Out</button>
+        <button id="logout-btn" onclick="location.href='iknowbasyon/index.html'">Log Out</button>
       </li>
     </ul>
   </nav>
   
   <main id="mainContent">
+    <!-- HOME SECTION - Shown by default -->
     <section id="home" class="page-section">
       <div class="custom-description-outer">
         <div class="custom-description-title">
-          Ang I'Know'basyon:
+          Ang I'Know'basyon: 
         </div>
         <div class="custom-description-inner">
           <p>
-            Ito ang pangalan ng Website na nagpapakilala upang magamit ang bagong materyal sa pagtuturo dulot ng pagbabago sa kurikulum upang mapabuti ang karanasan at resulta ng pag-aaral. 
-            Ito ay mayroong ibig-sabihin <b>“I know”</b> na nangangahulugang <b>“Alam ko”</b> at <b>“Iknowbasyon”</b> na nangangahulugang “Alam ko na mayroong pagbabago”.
+            Ito ang pangalan ng Website na nagpapakilala upang magamit ang bagong materyal sa pagtuturo dulot ng pagbabago sa kurikulum upang mapabuti ang karanasan at resulta ng pag-aaral.  
+            Ito ay mayroong ibig-sabihin <b>"I know"</b> na nangangahulugang <b>"Alam ko"</b> at <b>"Iknowbasyon"</b> na nangangahulugang "Alam ko na mayroong pagbabago".  
           </p>
           <p>
-            Ang Website na ito ay isang Suplementaryong Kagamitan na inihanda ng guro upang higit na malinang ang mga kasanayan at kompetensi ng mga mag-aaral sa bawat aralin. 
-            Layunin nitong ihatid ang mga gawaing kaugnay ng mga paksang tinalakay sa Ikatlong Markahan.
+            Ang Website na ito ay isang Suplementaryong Kagamitan na inihanda ng guro upang higit na malinang ang mga kasanayan at kompetensi ng mga mag-aaral sa bawat aralin.  
+            Layunin nitong ihatid ang mga gawaing kaugnay ng mga paksang tinalakay sa Ikatlong Markahan. 
           </p>
           <p>
-            Layunin ng <b>I'know'basyon</b> na malinang ang antas ng kasanayan ng mga mag-aaral pagdating sa mga aralin sa Mabisang komunikasyon. 
-            Ito ay ginamit bilang kagamitang Pampagkatuto upang makasabay sa mabilis na pagbabago ng panahon dulot ng yumayabong na teknolohiya. 
-            Ito rin ang magsisilbing daan upang mapukaw ang interes at aktibong partisipasyon ng mga mag-aaral.
+            Layunin ng <b>I'know'basyon</b> na malinang ang antas ng kasanayan ng mga mag-aaral pagdating sa mga aralin sa Mabisang komunikasyon.  
+            Ito ay ginamit bilang kagamitang Pampagkatuto upang makasabay sa mabilis na pagbabago ng panahon dulot ng yumayabong na teknolohiya.  
+            Ito rin ang magsisilbing daan upang mapukaw ang interes at aktibong partisipasyon ng mga mag-aaral. 
           </p>
         </div>
       </div>
     </section>
+
+    <!-- REMINDER SECTION - Hidden by default -->
+    <section id="reminder" class="page-section" style="display: none;">
+      <div class="custom-description-outer">
+        <div class="custom-description-title">
+          Mga Paalala:  
+        </div>
+        <div class="custom-description-inner">
+          <p>
+            Gamitin ng responsable ang website- Ang website ay para lamang sa pag-aaral at pagpapalawak ng kaalaman.   
+            Iwasang gamitin ito sa ibang layunin na hindi kaugnay sa aralin.   
+          </p>
+          <p>
+            Sundin ang mga tagubilin ng guro- Laging basahin at unawain ang mga panuto bago magsimula sa anumang gawain sa website.  
+          </p>
+          <p>
+            Panatilihing ligtas ang iyong account- Huwag ipahiram ang username at password sa iba.   Panatilihing pribado ang mga personal na impormasyon.
+          </p>
+          <p>
+            Humingi ng tulong kapag may hindi naiintindihan- Kung may problema sa paggamit ng website o sa gawain, agad na itanong sa guro. 
+          </p>
+          <p>
+            Gamitin ang oras nang wasto- Huwag magsayang/magpalipas ng oras sapagkat mayroong karampatang minuto sa bawat gawain.
+          </p>
+          <p>
+            I-report agad ang anumang teknikal na problema- Kapag may error, bug, o hindi gumaganang link, ipaalam agad sa guro.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION - Hidden by default -->
     <section id="about" class="page-section" style="display:none;">
       <div class="description-outer">
         <div class="custom-description-title">
-          Tungkol sa I'Know'basyon:
+           I'KNOW'BASYON: 
         </div>
         <div class="custom-description-inner">
           <p>
-            Ang website na ito ay idinisenyo upang tulungan ang mga mag-aaral sa pag-unlad ng kanilang komunikasyon at pagkatuto. 
-            Dito, matutuklasan mo ang mga aralin na magpapalawak sa iyong kaalaman at kasanayan sa makabagong paraan.
+            Ang <b>I'KNOW'BASYON</b> na siyang pangalan ng Website na nagbibigay ng bagong materyal sa pagtuturo bilang tugon sa pagbabago ng kurikulum.  Layunin nitong palalimin ang kasanayan at kompetensi ng mga mag-aaral, lalo na sa mga aralin sa Mabisang Komunikasyon, sa pamamagitan ng mga gawaing kaugnay ng Ikatlong Markahan.   Ginagamit ito bilang suplementaryong kagamitan upang mapukaw ang interes, aktibong partisipasyon, 
+            at mas mapabuti ang karanasan at resulta ng pag-aaral sa harap ng mabilis na pagbabago dulot ng teknolohiya.  
           </p>
         </div>
       </div>
     </section>
+
+    <!-- MAG-AARAL SECTION - Hidden by default -->
+    <section id="Mag-aaral" class="page-section" style="display: none;">
+      <div class="description-outer">
+        <div class="custom-description-title">
+          Mag-aaral:
+        </div>
+        <div class="custom-description-inner">
+          <p>
+            Ang Website na ito ay ginawa upang palawakin ang kaalaman, palalimin ang kasanayan, at suportahan ang edukasyonal na pangangailangan ng mga mag-aaral.   Bawat aralin ay mayroong pagtatayang gawain na nakatuon sa mga kasanayang dapat matamo.  Tapusin ito nang maayos upang makamit ang kaukulang marka at makausad sa susunod na aralin.
+            Ang mga pagtatayang gawain ay makatutulong upang mahasa ng kasanayan at pag-unawa sa aralin. Makilahok nang maayos sa bawat gawain upang mapukaw ang interes at mas maging produktibo sa pagkatuto. 
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAY-LIKHA SECTION - Hidden by default -->
+    <section id="May-likha" class="page-section" style="display:none;">
+      <div class="description-outer">
+        <div class="custom-description-title">
+          May-likha:  
+        </div>
+        <div class="custom-description-inner image-text-layout">
+          <img src="jvm.jpg" alt="May-likha" class="about-image">
+          <div>
+            <p>
+              Si <b>Jamaica A. Vicente</b> ay kasalukuyang guro II sa Filipino mula sa paaralan ng Cainta Senior High School. 
+              Siya ay nagtapos ng Batsilyer sa Sekondarya na nagpapakadalubhasa sa Asignaturang Filipino taong 2017 at kasalukuyang kumukuha ng Masterado sa Filipino sa University of Rizal System-Morong Campus at kasalukuyang na sa Ikatlong Taon na ng kaniyang napiling kurso. 
+              Ang kaniyang likhang kagamitan ay isang prerekisto sa kaniyang pagtatapos. 
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LESSON SECTION - Hidden by default -->
     <section id="lesson" class="page-section" style="display:none;">
       <h1 id="lessonTitle"></h1>
       <h2 id="quizTitle"></h2>
@@ -107,17 +192,17 @@
   </main>
 
   <div class="overlay" id="overlay"></div>
-   <!-- Password Modal -->
-<div id="passwordModal" class="modal">
-  <div class="modal-content">
-    <span class="close-btn" id="closeModal">&times;</span>
-    <h2>Enter Password</h2>
-    <input type="password" id="passwordInput" placeholder="Password" autocomplete="off" />
-    <button id="submitPassword">Unlock</button>
-    <div id="passwordError" class="error"></div>
+  
+  <!-- Password Modal -->
+  <div id="passwordModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" id="closeModal">&times;</span>
+      <h2>Enter Password</h2>
+      <input type="password" id="passwordInput" placeholder="Password" autocomplete="off" />
+      <button id="submitPassword">Unlock</button>
+      <div id="passwordError" class="error"></div>
+    </div>
   </div>
-</div>
-  <script src="/iknowbasyon/landing/aralin-lock.js"></script>
-
+  <script type="module" src="/iknowbasyon/landing/aralin-lock_data.js"></script>
 </body>
 </html>
