@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I'Know'basyon – Multiple Choice Quiz</title>
+  <link rel="stylesheet" href="Pquiz3.css">
+</head>
+<body>
+  <header>
+    <button class="back-btn" type="button" onclick="window.history.back()" aria-label="Bumalik">Bumalik</button>
+    <h1>I<span style="font-style: italic;"> 'Know' </span>basyon</h1>
+  </header>
+  <main>
+    <!-- ✅ Start Quiz Button - FIXED closing tag -->
+    <section class="start-section">
+      <button id="proceed-btn" class="proceed-btn">Start Quiz</button>
+    </section>
+
+    <!-- Quiz Directions -->
+    <div id="quiz-directions" class="quiz-directions" style="display:none;">
+      <strong>Panuto: </strong> Basahin nang mabuti ang bawat tanong. Pumili ng tamang sagot sa bawat bilang.
+    </div>
+
+    <!-- ✅ Quiz container - JavaScript populates questions dynamically -->
+    <div id="quiz-container" style="display:  none;">
+      <div id="timer">Time left: 02:00</div>
+      <form id="multiple-choice-quiz" autocomplete="off">
+        <fieldset>
+          <legend class="sr-only">Critical Reading Quiz</legend>
+          
+          <!-- ✅ This div will be filled by JavaScript, one question at a time -->
+          <div id="question-area"></div>
+          
+        </fieldset>
+      </form>
+      <div id="quiz-result" aria-live="polite"></div>
+    </div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="Pquiz3_data3.js"></script>
+</body>
+</html>
