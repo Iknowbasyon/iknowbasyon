@@ -4,19 +4,45 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>I'Know'basyon - Quiz Records</title>
+  
+  <!-- CRITICAL: Admin check FIRST - runs before anything else -->
+  <script>
+    (function() {
+      console.log('🔒 record.html - Checking admin access...');
+      
+      const isAdmin = localStorage.getItem('isAdmin') === 'true';
+      
+      if (! isAdmin) {
+        // NOT ADMIN - Block access
+        console.log('⛔ Access denied - not an admin');
+        alert('🔒 Access Denied\n\nQuiz records are only accessible to administrators.\n\nRedirecting to home page...');
+        window.location.replace('/iknowbasyon/landing/landing.html');
+        
+        // Stop page from rendering
+        document.addEventListener('DOMContentLoaded', function(e) {
+          e.stopImmediatePropagation();
+          document.body.innerHTML = '<div style="text-align: center;padding:50px;font-family:Arial;">⛔ Access Denied.  Redirecting... </div>';
+        });
+        
+        throw new Error('Access denied - stopping page load');
+      }
+      
+      console.log('✅ Admin verified - allowing access to records');
+    })();
+  </script>
+  
   <link rel="stylesheet" href="/iknowbasyon/landing/record.css">
-
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
   <script src="/iknowbasyon/landing/result.js" defer></script>
 </head>
 <body>
   <header>
-    <button class="back-btn" onclick="location.href='/iknowbasyon/landing/landing.html'" aria-label="Bumalik">Bumalik</button>
+    <button class="back-btn" onclick="location. href='/iknowbasyon/landing/landing.html'" aria-label="Bumalik">Bumalik</button>
     <h1>I<span style="font-style: italic;"> 'Know' </span>basyon</h1>
   </header>
   
-  <h2 style="text-align: center;">Quiz Records</h2>
+  <h2 style="text-align:  center;">Quiz Records</h2>
 
   <div class="filters">
     <label for="aralinSelect">Aralin:</label>
@@ -37,7 +63,7 @@
     </select>
     
     <button id="exportButton">📥 Export to Excel</button>
-     <button id="clear-records-btn" class="action-btn clear-btn">🗑️ Clear All Records</button>
+    <button id="clear-records-btn" class="action-btn clear-btn">🗑️ Clear All Records</button>
   </div>
 
   <table id="quizTable">
@@ -53,14 +79,14 @@
     </thead>
     <tbody>
       <tr>
-        <td colspan="6" style="text-align: center; color: #999; padding: 20px;">Loading quiz records...</td>
+        <td colspan="6" style="text-align: center; color:  #999; padding: 20px;">Loading quiz records...</td>
       </tr>
     </tbody>
   </table>
 
   <script>
-    // Debug: Log when page loads
-    console.log('record.html loaded');
+    // Debug:  Log when page loads
+    console. log('record.html loaded');
   </script>
 </body>
 </html>
