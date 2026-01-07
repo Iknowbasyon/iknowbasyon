@@ -12,7 +12,7 @@ body {
 /* Header styles */
 header {
   width: 100%;
-  background: #00daef;
+  background: #0C2B4E;
   padding: 24px 0 14px 0;
   box-shadow: 0 2px 16px rgba(0,0,0,0.07);
   border-radius: 0 0 24px 24px;
@@ -27,37 +27,51 @@ header {
   position: absolute;
   left: 24px;
   top: 18px;
-  color: black;
+  color: #EFECE3;
   background: transparent;
   border: none;
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
-  transition: background 0.2s;
+  transition:  background 0.2s;
+  padding: 8px 16px;
+  border-radius:  6px;
+  z-index: 101;
+  pointer-events: auto;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color:   rgba(255,255,255,0.2);
 }
 
+
 .back-btn:hover {
-  background: rgba(0,0,0,0.1);
+  background: rgba(255,255,255,0.2);
+}
+
+.back-btn:active {
+  background: rgba(255,255,255,0.3);
+  transform: scale(0.98);
 }
 
 header h1 {
-  font-size: 2.2rem;
+  font-size:  2.2rem;
   font-weight: 700;
   margin: 0;
   letter-spacing: 1px;
-  color: black;
+  color: #EFECE3;
+  pointer-events:  none;
 }
 
 header i {
-  color: black;
-  font-style: italic;
+  color: #EFECE3;
+  font-style:  italic;
 }
 
 header p {
   font-size: 1.08rem;
-  color: #222;
+  color: #EFECE3;
   margin: 4px 0 0 0;
   text-align: center;
+  pointer-events: none;
 }
 
 /* Main layout */
@@ -141,24 +155,3 @@ main {
     height: 90vh !important;
   }
 }
-
-#quiz-result {
-  font-size: 1.08rem;
-  font-weight: 700;
-  color:  #1976d2;
-  text-align: center;
-  margin: 2rem auto 1.5rem auto;
-  min-height: 24px;
-  max-width: 500px; /* ✅ Reduced from 540px to add space */
-  width: 92%; /* ✅ Reduced from 98% to add breathing room */
-  background: #e0f7fa;
-  border-radius: 12px;
-  padding: 1.2rem 1.5rem; /* ✅ Increased horizontal padding */
-  transition: color 0.18s;
-  display: block;
-  box-shadow: 0 4px 12px rgba(0,218,239,0.10);
-  position: relative;
-  z-index: 10;
-  box-sizing: border-box; /* ✅ Added to include padding in width */
-}
-
