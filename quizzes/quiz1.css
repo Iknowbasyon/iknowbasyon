@@ -141,3 +141,24 @@ main {
     height: 90vh !important;
   }
 }
+
+#quiz-result {
+  font-size: 1.08rem;
+  font-weight: 700;
+  color:  #1976d2;
+  text-align: center;
+  margin: 2rem auto 1.5rem auto;
+  min-height: 24px;
+  max-width: 500px; /* ✅ Reduced from 540px to add space */
+  width: 92%; /* ✅ Reduced from 98% to add breathing room */
+  background: #e0f7fa;
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem; /* ✅ Increased horizontal padding */
+  transition: color 0.18s;
+  display: block;
+  box-shadow: 0 4px 12px rgba(0,218,239,0.10);
+  position: relative;
+  z-index: 10;
+  box-sizing: border-box; /* ✅ Added to include padding in width */
+}
+
