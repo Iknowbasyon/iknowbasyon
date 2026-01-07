@@ -3,7 +3,7 @@
 
 body {
   font-family: 'Segoe UI', Arial, sans-serif;
-  background: #EFECE3;
+  background: white;
   min-height: 100vh;
   color: #222;
   justify-content: center;
@@ -466,4 +466,310 @@ main {
 }
 .error {
   color: #c00; font-size: 0.95em; margin-top: 0.5rem; min-height: 1.3em;
+}
+
+/* May-likha Section Layout: Add Image Beside Content */
+#May-likha .description-outer {
+  display: flex; /* Flexbox layout for side-by-side design */
+  align-items: flex-start; /* Align image and content at the top */
+  gap: 5px; /* Space between the image and the description */
+}
+
+#May-likha img.about-image {
+  display: block; /* Ensure the image doesn't flow inline */
+  margin: 0 auto 20px; /* Add margin below the image */
+  width: 200px; /* Set fixed width */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 12px; /* Rounded corners for aesthetics */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+}
+
+#May-likha .custom-description-inner {
+  margin-top: 20px; /* Add additional spacing */
+  text-align: justify; /* Neat text alignment */
+  font-size: 1.2rem; /* Keep text readable */
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 700px) {
+  #May-likha .description-outer {
+    flex-direction: column; /* Stack the image and content vertically */
+    align-items: center; /* Center-align the image and content */
+  }
+
+  #May-likha img.about-image {
+    width: 80%; /* Image adjusts to 80% width for smaller screens */
+    margin-bottom: 15px; /* Add space below the image */
+  }
+
+  #May-likha .custom-description-inner {
+    text-align: justify; /* Ensure the text looks neat when stacked */
+  }
+}
+
+/* Mga Paalala Section - All Paragraphs Indented */
+#reminder .custom-description-inner p {
+  text-indent: 40px; /* All paragraphs indented by default */
+  margin-bottom: 1.2em;
+  text-align: justify;
+}
+
+/* Mobile responsive indentation */
+@media (max-width: 700px) {
+  #reminder .custom-description-inner p {
+    text-indent: 30px; /* Slightly smaller indent on mobile */
+  }
+}
+/* ========================================
+   ADMIN PANEL STYLES
+   ======================================== */
+
+.aralin-toggle-container {
+  display: grid;
+  gap: 1.5rem;
+  margin:  2rem 0;
+}
+
+.aralin-toggle-card {
+  background: linear-gradient(135deg, #f8fbff 0%, #e1f7fc 100%);
+  border: 2px solid #00daef;
+  border-radius: 15px;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s;
+  box-shadow: 0 2px 10px rgba(0, 218, 239, 0.1);
+}
+
+.aralin-toggle-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 218, 239, 0.2);
+}
+
+.aralin-toggle-info h4 {
+  color: #0C2B4E;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.aralin-status {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.aralin-status.unlocked {
+  color: #2e7d32;
+}
+
+.aralin-status.locked {
+  color: #c62828;
+}
+
+.aralin-toggle-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.toggle-btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.unlock-btn {
+  background: linear-gradient(90deg, #4caf50 0%, #66bb6a 100%);
+  color: white;
+}
+
+.unlock-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+}
+
+.lock-btn {
+  background: linear-gradient(90deg, #dc3545 0%, #e57373 100%);
+  color: white;
+}
+
+.lock-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
+}
+
+/* Bulk Actions */
+.bulk-actions-section {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: #fff3cd;
+  border:  2px solid #ffc107;
+  border-radius:  15px;
+}
+
+.bulk-btn-container {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.bulk-action-btn {
+  width: 100%;
+  padding:  1. 2rem;
+  border: none;
+  border-radius: 12px;
+  font-size:  1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow:  0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.unlock-all-btn {
+  background: linear-gradient(90deg, #1976d2 0%, #00daef 100%);
+  color: white;
+}
+
+.unlock-all-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(25, 118, 210, 0.4);
+}
+
+.lock-all-btn {
+  background: linear-gradient(90deg, #dc3545 0%, #c62828 100%);
+  color: white;
+}
+
+.lock-all-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4);
+}
+
+/* Status Message */
+.admin-status-message {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.1rem;
+  min-height: 20px;
+  transition: all 0.3s;
+}
+
+.admin-status-message.success {
+  background: #c8e6c9;
+  color: #2e7d32;
+  border: 2px solid #4caf50;
+}
+
+.admin-status-message.error {
+  background: #ffcdd2;
+  color: #c62828;
+  border:  2px solid #dc3545;
+}
+
+.admin-status-message.loading {
+  background: #e0f7fa;
+  color:  #0C2B4E;
+  border: 2px solid #00daef;
+}
+
+/* Password Section */
+.password-section {
+  margin-top: 3rem;
+  padding: 2rem;
+  background: #f8fbff;
+  border: 2px solid #e0f7fa;
+  border-radius:  15px;
+}
+
+.password-grid {
+  display:  grid;
+  gap: 1.5rem;
+}
+
+.password-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: white;
+  border:  2px solid #00daef;
+  border-radius: 10px;
+}
+
+.password-item label {
+  min-width: 150px;
+  font-weight: 600;
+  color: #0C2B4E;
+  margin:  0;
+}
+
+.password-item input {
+  flex: 1;
+  padding:  0.75rem;
+  border: 2px solid #e0f7fa;
+  border-radius: 8px;
+  font-size:  1rem;
+  transition: all 0.3s;
+}
+
+.password-item input:focus {
+  outline: none;
+  border-color: #1976d2;
+  box-shadow: 0 0 10px rgba(25, 118, 210, 0.2);
+}
+
+.update-pass-btn {
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(90deg, #1976d2 0%, #00daef 100%);
+  color: white;
+  border:  none;
+  border-radius:  8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.2);
+}
+
+.update-pass-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(25, 118, 210, 0.4);
+}
+
+/* Mobile Responsive */
+@media (max-width: 700px) {
+  .aralin-toggle-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .aralin-toggle-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .toggle-btn {
+    width: 100%;
+  }
+
+  .password-item {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .password-item label {
+    min-width: auto;
+  }
+
+  .update-pass-btn {
+    width: 100%;
+  }
 }
