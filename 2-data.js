@@ -16,7 +16,7 @@ console.log('✅ Supabase initialized for login page');
 // === ADMIN EMAIL LIST ===
 // ✅ Add admin emails here
 const ADMIN_EMAILS = [
-  'jamaicavicente455@gmail.com',  // Main admin
+                                          // Main admin
   'msjamaicavicente@gmail.com',         // Add more admin emails as needed
   'ragnarokeneftee@gmail.com'      // Example:  another admin
 ];
@@ -223,4 +223,5 @@ window. ADMIN_EMAILS = ADMIN_EMAILS;
 
 
 console.log('✅ Login page JavaScript fully loaded');
+
 
