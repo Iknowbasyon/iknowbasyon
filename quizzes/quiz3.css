@@ -1,18 +1,16 @@
 body {
-  background: linear-gradient(120deg, #e4f1fb 0%, #cbefff 100%);
+  background: #EFECE3;
   font-family: 'Montserrat', Arial, sans-serif;
   margin: 0;
   min-height: 100vh;
 }
 
-/* Header and navigation */
 header {
   width: 100%;
-  background: #00daef;
-  color: black;
+  background:  #0C2B4E;
+  color: white;
   padding: 1.8rem 0 1rem 0;
   box-shadow: 0 4px 28px rgba(0,218,239,0.14);
-  border-radius: 0 0 28px 28px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,7 +22,7 @@ header {
   position: absolute;
   left: 1.2rem;
   top: 1.2rem;
-  color: black;
+  color: white;
   background: none;
   border: none;
   border-radius: 7px;
@@ -35,9 +33,8 @@ header {
   padding: 7px 15px;
   transition: background 0.2s;
 }
-
 .back-btn:hover {
-  background: #e0f7fa;
+  background: linear-gradient(90deg,#1976d2 65%, #00daef 100%);
 }
 
 header h1 {
@@ -45,7 +42,7 @@ header h1 {
   font-weight: 800;
   margin: 0 0 0.3rem 0;
   letter-spacing: 1.5px;
-  color: black;
+  color: #EFECE3;
   text-shadow: 0 2px 10px rgba(25,118,210,0.10);
   line-height: 1;
 }
@@ -58,7 +55,6 @@ main {
   justify-content: flex-start;
 }
 
-/* Quiz Directions Styling */
 .quiz-directions {
   max-width: 540px;
   margin: 0 auto 1.3rem auto;
@@ -67,17 +63,17 @@ main {
   box-shadow: 0 2px 10px rgba(0,218,239,0.07);
   padding: 1.1rem 1.2rem;
   font-size: 1.16rem;
-  color: #1976d2;
+  color: black;
   line-height: 1.6;
   font-weight: 600;
   text-align: center;
+  font-family: Noto Sans, Arial, sans-serif;
 }
 
-/* Start Button */
 .start-btn {
   display: block;
   margin: 1.7rem auto 1.3rem auto;
-  background: linear-gradient(90deg,#00daef 75%, #1976d2 100%);
+  background: #0C2B4E ;
   color: #fff;
   border: none;
   border-radius: 14px;
@@ -97,7 +93,6 @@ main {
   box-shadow: 0 8px 24px rgba(25,118,210,0.15);
 }
 
-/* Quiz Box */
 #quiz-container {
   background: #fff;
   border-radius: 18px;
@@ -119,7 +114,6 @@ main {
   100% { opacity: 1; transform: scale(1);}
 }
 
-/* Timer - Make small and in flow */
 #timer {
   display: none;
   position: static;
@@ -152,7 +146,6 @@ main {
   gap: 8px;
   transition: box-shadow 0.2s, background 0.2s;
 }
-
 .quiz-question-card:hover {
   box-shadow: 0 7px 16px rgba(0,218,239,0.10);
   background: linear-gradient(90deg,#e0f7fa 80%, #f8fbff 100%);
@@ -168,56 +161,49 @@ main {
   border-radius: 8px;
   display: inline-block;
 }
-
 .question-text {
-  margin-bottom: 0.9rem;
+  margin-bottom: 0.7rem;
   font-size: 1.12rem;
   font-weight: 600;
-  line-height: 1.6;
+  line-height: 1.5;
   color: #222;
   width: 100%;
   display: block;
 }
 
-/* Tama o Mali below the question, centered, big clickable */
-.tama-mali-group {
-  display: flex;
-  gap: 16px;
+.choices-group {
   width: 100%;
-  justify-content: center;
-  margin-top: 0.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
 }
-
-.quiz-question-card label {
-  font-size: 1.07rem;
-  font-weight: 700;
+.choices-group label {
+  font-size: 1.09rem;
+  font-weight: 600;
   color: #1976d2;
   background: #e0f7fa;
-  border-radius: 7px;
-  padding: 8px 24px;
+  border-radius: 6px;
+  padding: 7px 10px;
   cursor: pointer;
   transition: background 0.13s, border 0.13s;
+  border: 1.5px solid #00daef;
+  margin: 0;
+  min-width: 44px;
+  justify-content: flex-start;
+  text-align: left;
   display: flex;
   align-items: center;
-  gap: 6px;
-  border: 2px solid #00daef;
-  margin: 0;
-  min-width: 60px;
-  justify-content: center;
-  text-align: center;
 }
-
-.quiz-question-card label:hover,
-.quiz-question-card input[type="radio"]:focus + label {
+.choices-group label:hover,
+.choices-group input[type="radio"]:focus + label {
   background: #b0eaff;
   border-color: #1976d2;
 }
-
-.quiz-question-card input[type="radio"] {
+.choices-group input[type="radio"] {
   accent-color: #00daef;
-  margin-right: 6px;
-  width: 1.13em;
-  height: 1.13em;
+  margin-right: 9px;
+  width: 1.10em;
+  height: 1.10em;
 }
 
 /* Submit Button */
@@ -236,7 +222,6 @@ main {
   margin-top: 1.2rem;
   width: 100%;
 }
-
 .submit-btn:hover, .submit-btn:active {
   background: linear-gradient(90deg,#1976d2 75%, #00daef 100%);
   box-shadow: 0 6px 14px rgba(0,218,239,0.12);
@@ -246,17 +231,23 @@ main {
 #quiz-result {
   font-size: 1.08rem;
   font-weight: 700;
-  color: #1976d2;
+  color:  #1976d2;
   text-align: center;
-  margin-top: 1.15rem;
+  margin: 2rem auto 1.5rem auto;
   min-height: 24px;
-  width: 100%;
+  max-width: 500px; /* ✅ Reduced from 540px to add space */
+  width: 92%; /* ✅ Reduced from 98% to add breathing room */
   background: #e0f7fa;
-  border-radius: 7px;
-  padding: 0.7rem;
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem; /* ✅ Increased horizontal padding */
   transition: color 0.18s;
   display: block;
+  box-shadow: 0 4px 12px rgba(0,218,239,0.10);
+  position: relative;
+  z-index: 10;
+  box-sizing: border-box; /* ✅ Added to include padding in width */
 }
+
 
 /* Accessibility: visually hidden legend */
 .sr-only {
@@ -328,11 +319,7 @@ main {
     font-size: 0.98rem;
     margin-bottom: 0.72rem;
   }
-  .tama-mali-group {
-    gap: 7px;
-    margin-top: 0.1rem;
-  }
-  .quiz-question-card label {
+  .choices-group label {
     font-size: 0.93rem;
     padding: 6px 13px;
     border-radius: 4px;
@@ -352,8 +339,19 @@ main {
   }
 }
 
+/* Navigation buttons container */
+.nav-btns {
+  display: flex;
+  justify-content: flex-end; /* Align to the right */
+  align-items: center;
+  gap: 10px;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+/* Next Button */
 .next-btn {
-  background: linear-gradient(90deg, #00daef 75%, #1976d2 100%);
+  background: #0C2B4E ;
   color: #fff;
   border: none;
   border-radius: 12px;
@@ -365,63 +363,26 @@ main {
   letter-spacing: 1px;
   transition: background 0.22s, color 0.2s, box-shadow 0.2s, opacity 0.2s;
   outline: none;
-  margin-left: auto;
 }
 
 .next-btn:hover,
 .next-btn:focus {
   background: linear-gradient(90deg, #1976d2 65%, #00daef 100%);
   color: #fff;
-  box-shadow: 0 8px 24px rgba(25,118,210,0.15);
+  box-shadow:  0 8px 24px rgba(25,118,210,0.15);
   opacity: 0.96;
 }
 
-.next-btn:disabled {
-  background: linear-gradient(90deg, #b2ebf2 75%, #90caf9 100%);
-  color: #bdbdbd;
-  cursor: not-allowed;
-  box-shadow: none;
-  opacity: 0.7;
-}
 
-.prev-btn {
-  background: linear-gradient(90deg, #e0f7fa 85%, #b2ebf2 100%);
-  color: #1976d2;
-  border: none;
-  border-radius: 12px;
-  padding: 0.9rem 2.1rem;
-  font-size: 1.14rem;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(25,118,210,0.10);
-  letter-spacing: 1px;
-  transition: background 0.22s, color 0.2s, box-shadow 0.2s, opacity 0.2s;
-  outline: none;
-  margin-right: auto;
-}
-
-.prev-btn:hover,
-.prev-btn:focus {
-  background: linear-gradient(90deg, #b2ebf2 75%, #00daef 100%);
-  color: #135c91;
-  box-shadow: 0 6px 18px rgba(0,218,239,0.12);
-  opacity: 0.96;
-}
-
-.prev-btn:disabled {
-  background: linear-gradient(90deg, #f0f7fa 75%, #e0eaf6 100%);
-  color: #bdbdbd;
-  cursor: not-allowed;
-  box-shadow: none;
-  opacity: 0.7;
-}
-
-.nav-btns {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  width: 100%;
-  margin-top: 1.1rem;
-  margin-bottom: 0.2rem;
+/* Responsive adjustments */
+@media (max-width: 700px) {
+  .nav-btns {
+    margin-top: 0.5rem;
+  }
+  
+  .next-btn {
+    font-size: 0.97rem;
+    padding: 0.7rem 1.5rem;
+    border-radius: 8px;
+  }
 }
