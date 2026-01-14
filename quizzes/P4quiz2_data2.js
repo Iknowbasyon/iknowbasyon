@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Global Variables
   let currentUser = null;
-  let timer = 2 * 60;
+  let timer = 4 * 60;
   let timerInterval = null;
   let timeUp = false;
   let currentQuestionIndex = 0;
@@ -190,7 +190,7 @@ function startTimer() {
     console.log('Timer element found:', timerElement);
     console.log('Timer display variable:', timerDisplay);
     
-    timer = 2 * 60;
+    timer = 4 * 60;
     timeUp = false;
     updateTimer();
     
