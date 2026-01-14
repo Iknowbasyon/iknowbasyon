@@ -19,7 +19,7 @@ let quizRecords = [];
 
 // Mapping object (aralin number as key, gawain number as subkey)
 const gawainNames = {
-  1: { 1: "Tuklas Kaalaman", 2: "Laro ng Talino", 3: "Sagot ko!     Panalo ako!" },
+  1: { 1: "Tuklas Kaalaman", 2: "Laro ng Talino", 3: "Sagot ko!      Panalo ako!" },
   2: { 1: "Balitaan mo ako!", 2: "Hibla ng Alaala", 3: "Tama o Tsamba" },
   3: { 1: "Salituklas", 2: "Kilatisin", 3: "Tumpak O Lagapak" },
   4: { 1: "I KNOW:     Teksto", 2: "Ubod ng Buod", 3: "Teksto ko, alamin mo!" }
@@ -38,7 +38,7 @@ async function checkAuth() {
       return null;
     }
     
-    if (!session || ! session.user) {
+    if (!session || ! session. user) {
       console.log('No active session');
       redirectToLogin();
       return null;
@@ -58,7 +58,7 @@ async function checkAuth() {
 
 function redirectToLogin() {
   alert('Please login first to view your records.');
-  window.location. href = 'iknowbasyon/index.html';
+  window.location.href = 'index.html';
 }
 
 // === FETCH QUIZ RESULTS ===
@@ -91,13 +91,13 @@ async function fetchQuizResults() {
 
     if (error) {
       console.error('❌ Error fetching quiz results:', error);
-      showError('Failed to load quiz results.  Please refresh the page.');
+      showError('Failed to load quiz results. Please refresh the page.');
       return [];
     }
 
-    console.log(`✅ Fetched ${data?. length || 0} records`);
+    console.log(`✅ Fetched ${data?.length || 0} records`);
 
-    if (! data || data.length === 0) {
+    if (!data || data.length === 0) {
       console.log('⚠️ No records found');
       return [];
     }
@@ -111,14 +111,7 @@ async function fetchQuizResults() {
       gawain: record.gawain,
       score: record.score,
       total:  record.total_questions,
-      quiz_name: record.quiz_name || '',
-      date:  new Date(record.date_taken).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-      })
+      quiz_name: record.quiz_name || ''
     }));
     
   } catch (err) {
@@ -134,7 +127,7 @@ function showError(message) {
   if (tbody) {
     tbody.innerHTML = `
       <tr>
-        <td colspan="6" style="color: #dc3545; text-align: center; padding: 20px;">
+        <td colspan="5" style="color: #dc3545; text-align: center; padding: 20px;">
           <strong>⚠️ ${message}</strong>
         </td>
       </tr>
@@ -151,13 +144,13 @@ function renderTable(records) {
     return;
   }
   
-  tbody. innerHTML = "";
+  tbody.innerHTML = "";
   
-  if (records.length === 0) {
+  if (records. length === 0) {
     tbody.innerHTML = `
       <tr>
-        <td colspan="6" style="text-align: center; color: #666; padding: 20px;">
-          📝 No quiz records found.   Take a quiz to see your results here!
+        <td colspan="5" style="text-align: center; color: #666; padding:  20px;">
+          📝 No quiz records found.  Take a quiz to see your results here! 
         </td>
       </tr>
     `;
@@ -166,16 +159,15 @@ function renderTable(records) {
 
   records.forEach(record => {
     const tr = document.createElement('tr');
-    const gawainName = gawainNames[record.aralin]?.[record.gawain] || `Gawain ${record.gawain}`;
-    const percentage = ((record.score / record.total) * 100).toFixed(1);
+    const gawainName = gawainNames[record. aralin]?.[record.gawain] || `Gawain ${record.gawain}`;
+    const percentage = ((record.score / record. total) * 100).toFixed(1);
     
     tr.innerHTML = `
       <td>${record.username}</td>
-      <td>${record.email}</td>
+      <td>${record. email}</td>
       <td>Aralin ${record.aralin}</td>
       <td>${gawainName}</td>
       <td>${record.score}/${record.total} (${percentage}%)</td>
-      <td>${record.date}</td>
     `;
     tbody.appendChild(tr);
   });
@@ -186,7 +178,7 @@ function filterRecords() {
   const aralinSelect = document.getElementById('aralinSelect');
   const gawainSelect = document.getElementById('gawainSelect');
   
-  if (!aralinSelect || !gawainSelect) {
+  if (!aralinSelect || ! gawainSelect) {
     console.error('❌ Filter elements not found');
     return quizRecords;
   }
@@ -219,7 +211,7 @@ function exportToExcel() {
   
   // Check if XLSX library is loaded
   if (typeof XLSX === 'undefined') {
-    alert('❌ Excel library not loaded!   Please refresh the page and try again.');
+    alert('❌ Excel library not loaded!  Please refresh the page and try again.');
     console.error('XLSX library is not defined');
     return;
   }
@@ -228,7 +220,7 @@ function exportToExcel() {
   const filtered = filterRecords();
   
   if (filtered.length === 0) {
-    alert('No data to export!  ');
+    alert('No data to export! ');
     return;
   }
 
@@ -245,8 +237,7 @@ function exportToExcel() {
         'Gawain': gawainName,
         'Quiz Name': record.quiz_name || gawainName,
         'Score': `${record.score}/${record. total}`,
-        'Percentage': `${percentage}%`,
-        'Date': record.date
+        'Percentage': `${percentage}%`
       };
     });
 
@@ -257,15 +248,14 @@ function exportToExcel() {
     const ws = XLSX.utils.json_to_sheet(excelData);
 
     // Set column widths
-    ws['! cols'] = [
-      { wch:  15 }, // Username
-      { wch:  30 }, // Email
+    ws['!cols'] = [
+      { wch: 15 }, // Username
+      { wch: 30 }, // Email
       { wch: 12 }, // Aralin
       { wch: 25 }, // Gawain
       { wch: 30 }, // Quiz Name
       { wch: 15 }, // Score
-      { wch: 12 }, // Percentage
-      { wch: 20 }  // Date
+      { wch: 12 }  // Percentage
     ];
 
     // Add worksheet to workbook
@@ -303,7 +293,7 @@ async function clearAllRecords() {
     return;
   }
 
-  if (!currentUser) {
+  if (! currentUser) {
     console.error('No user logged in');
     alert('Error: No user logged in');
     return;
@@ -327,7 +317,7 @@ async function clearAllRecords() {
       deleteQuery = deleteQuery.eq('user_email', currentUser.email);
     } else {
       console.log('Deleting ALL records');
-      deleteQuery = deleteQuery. gt('id', 0);
+      deleteQuery = deleteQuery.gt('id', 0);
     }
     
     const { data, count, error, status } = await deleteQuery;
@@ -346,7 +336,7 @@ async function clearAllRecords() {
     
     // Get actual count from data
     const deletedCount = data ?  data.length : count || 0;
-    console.log(`✅ Delete completed!  Deleted ${deletedCount} records`);
+    console.log(`✅ Delete completed! Deleted ${deletedCount} records`);
     
     // Clear local cache
     quizRecords = [];
@@ -361,19 +351,19 @@ async function clearAllRecords() {
     if (aralinSelect) aralinSelect.value = '';
     if (gawainSelect) gawainSelect.value = '';
     
-    alert(`✅ Successfully deleted ${deletedCount} records! `);
+    alert(`✅ Successfully deleted ${deletedCount} records!`);
     
     // Verify deletion
     setTimeout(async () => {
-      console. log('\n🔄 Verifying deletion.. .');
+      console.log('\n🔄 Verifying deletion...');
       quizRecords = await fetchQuizResults();
-      console.log(`📊 Records remaining:  ${quizRecords.length}`);
+      console.log(`📊 Records remaining: ${quizRecords.length}`);
       renderTable(quizRecords);
       
       if (quizRecords.length === 0) {
-        console.log('✅ VERIFIED:  All records deleted! ');
+        console.log('✅ VERIFIED: All records deleted! ');
       } else {
-        console.warn('⚠️ WARNING: Some records still exist! ');
+        console.warn('⚠️ WARNING: Some records still exist!');
       }
     }, 1000);
     
@@ -392,7 +382,7 @@ async function init() {
   
   if (user) {
     // ✅ Check if user is admin and show badge
-    const userIsAdmin = localStorage. getItem('isAdmin') === 'true';
+    const userIsAdmin = localStorage.getItem('isAdmin') === 'true';
     
     if (userIsAdmin) {
       const header = document.querySelector('h2');
@@ -411,7 +401,7 @@ async function init() {
 }
 
 // === EVENT LISTENERS ===
-document. addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
   console.log('📄 DOM loaded - attaching event listeners');
   
   init();
@@ -429,7 +419,7 @@ document. addEventListener('DOMContentLoaded', () => {
   console.log('- clearButton:', clearButton ? '✅ Found' :  '❌ Not found');
   
   if (aralinSelect) {
-    aralinSelect. addEventListener('change', filterRecords);
+    aralinSelect.addEventListener('change', filterRecords);
     console.log('✅ aralinSelect listener attached');
   }
   
@@ -449,5 +439,4 @@ document. addEventListener('DOMContentLoaded', () => {
   } else {
     console.error('❌ Clear button not found!  Make sure button ID is "clear-records-btn"');
   }
-
 });
