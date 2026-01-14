@@ -2,7 +2,7 @@
 const SUPABASE_URL = 'https://sinrkmzacjqcdsvyzgpv.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNpbnJrbXphY2pxY2Rzdnl6Z3B2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTgwMDc3MDAsImV4cCI6MjA3MzU4MzcwMH0.X1Drl69l6IkaV518F382-KJEE1z81PiaC-O7GK7pGqs';
 
-const supaQuizP2 = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+const supaQuizP3Q2 = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
   auth: {
     persistSession: true,
     autoRefreshToken: true,
@@ -11,22 +11,19 @@ const supaQuizP2 = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
   }
 });
 
-console.log('✅ Supabase initialized for Aralin 2 Quiz 2');
+console.log('✅ Supabase initialized for Aralin 3 Quiz 2');
 
 // ✅ Wait for DOM to load
-document.addEventListener('DOMContentLoaded', function() {
+document. addEventListener('DOMContentLoaded', function() {
   console.log('✅ DOM loaded, initializing quiz...');
 
   // DOM Elements
-  const proceedBtn = document.getElementById('proceed-btn');
-  const videoSection = document.getElementById('video-section');
-  const quizDirections = document.getElementById('quiz-directions');
+  const startBtn = document. getElementById('start-btn');
   const quizContainer = document.getElementById('quiz-container');
   const timerDisplay = document.getElementById('timer');
-  const quizForm = document.getElementById('multiple-choice-quiz');
-  const questionArea = document.getElementById('question-area');
+  const quizForm = document.getElementById('tama-mali-quiz');
   const resultDisplay = document.getElementById('quiz-result');
-  const headerBackBtn = document.querySelector('.back-btn');
+  const headerBackBtn = document.querySelector('header .back-btn');
 
   // Global Variables
   let currentUser = null;
@@ -35,21 +32,14 @@ document.addEventListener('DOMContentLoaded', function() {
   let timeUp = false;
   let currentQuestionIndex = 0;
   let userAnswers = [];
-  let questions = [];
-
-  // Initial UI state
-  timerDisplay.textContent = "Time left: 04:00";
-  timerDisplay.style.display = "none";
-  quizContainer.style.display = "none";
-  quizDirections.style.display = "none";
-  videoSection.style.display = "block";
+  let questions = []; // ✅ Will be fetched from Supabase
 
   // ✅ Check Authentication
   async function checkAuth() {
     console.log('=== Checking authentication ===');
     
     try {
-      const { data: { session }, error } = await supaQuizP2.auth.getSession();
+      const { data: { session }, error } = await supaQuizP3Q2.auth.getSession();
       
       if (error) {
         console.error('Session error:', error);
@@ -61,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('❌ No active session');
         
         const warning = document.createElement('div');
-        warning.style.cssText = `
+        warning.style. cssText = `
           background: #fff3cd;
           border: 2px solid #ffc107;
           color: #856404;
@@ -74,8 +64,8 @@ document.addEventListener('DOMContentLoaded', function() {
           font-weight: bold;
         `;
         warning.innerHTML = `
-          ⚠️ Hindi ka naka-login!  <br>
-          <small style="font-weight: normal;">Ang iyong resulta ay hindi ma-se-save. </small>
+          ⚠️ Hindi ka naka-login! <br>
+          <small style="font-weight:  normal;">Ang iyong resulta ay hindi ma-se-save.</small>
         `;
         document.querySelector('main').insertBefore(warning, document.querySelector('main').firstChild);
         
@@ -84,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       
       currentUser = session.user;
-      console.log('✅ User logged in:', currentUser. email);
+      console.log('✅ User logged in:', currentUser.email);
       
     } catch (err) {
       console.error('Auth error:', err);
@@ -92,77 +82,60 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // ✅ Fetch Questions from Supabase
-  async function fetchQuestionsFromSupabase() {
-    console.log('=== FETCHING QUESTIONS FROM SUPABASE ===');
-    
-    try {
-      const { data, error } = await supaQuizP2
-        .from('Aralin2_Quiz2')
-        .select('id, question_text, choices, correct_answer')
-        .order('id', { ascending: true });
+ // ✅ Fetch Questions from Supabase
+async function fetchQuestionsFromSupabase() {
+  console.log('=== FETCHING QUESTIONS FROM SUPABASE ===');
+  
+  try {
+    const { data, error } = await supaQuizP3Q2
+      .from('Aralin3_Quiz2')
+      .select('id, question_text, correct_answer')
+      .order('id', { ascending: true });
 
-      if (error) {
-        console.error('❌ Error fetching questions:', error);
-        alert('Failed to fetch questions.\n\nError: ' + error.message);
-        return [];
-      }
-
-      if (! data || data.length === 0) {
-        console.warn('⚠️ No questions found in database');
-        alert('No questions found.  Please check your database.');
-        return [];
-      }
-
-      console.log('✅ Fetched questions:', data);
-
-      const formattedQuestions = data.map((q, index) => {
-        let parsedChoices;
-        
-        try {
-          if (typeof q.choices === 'string') {
-            parsedChoices = JSON.parse(q.choices);
-          } else {
-            parsedChoices = q.choices;
-          }
-          
-          let choicesArray;
-          if (Array.isArray(parsedChoices)) {
-            choicesArray = parsedChoices;
-          } else if (typeof parsedChoices === 'object' && parsedChoices !== null) {
-            choicesArray = Object.entries(parsedChoices).map(([key, value]) => `${key}.  ${value}`);
-          } else {
-            console.error(`Invalid choices format for question ${index + 1}:`, parsedChoices);
-            choicesArray = [];
-          }
-          
-          return {
-            id: q.id,
-            q: q.question_text,
-            choices: choicesArray,
-            correct_answer: q.correct_answer
-          };
-          
-        } catch (e) {
-          console.error(`Error parsing question ${index + 1}:`, e);
-          return {
-            id: q.id,
-            q: q.question_text,
-            choices: ['A.  Error loading choice', 'B. Error loading choice', 'C. Error loading choice', 'D. Error loading choice'],
-            correct_answer: q.correct_answer
-          };
-        }
-      });
-
-      console.log('✅ Formatted questions:', formattedQuestions);
-      return formattedQuestions;
-      
-    } catch (err) {
-      console.error('❌ Unexpected error:', err);
-      alert('Unexpected error:  ' + err.message);
+    if (error) {
+      console.error('❌ Error fetching questions:', error);
+      alert('Failed to fetch questions.\n\nError: ' + error. message);
       return [];
     }
+
+    if (! data || data.length === 0) {
+      console.warn('⚠️ No questions found in database');
+      alert('No questions found.   Please check your database.');
+      return [];
+    }
+
+    console.log('✅ Fetched questions (RAW):', data);
+
+    // Format questions for AP/TP quiz
+    const formattedQuestions = data.map((q) => {
+      // Clean the correct answer:  trim whitespace/newlines and normalize case
+      let cleanAnswer = String(q.correct_answer).trim();
+      
+      // Normalize to match our radio button values exactly
+      if (cleanAnswer. toLowerCase() === 'ap') {
+        cleanAnswer = 'AP';
+      } else if (cleanAnswer.toLowerCase() === 'tp') {
+        cleanAnswer = 'TP';
+      }
+      
+      console.log(`Question ${q.id}: "${q. correct_answer}" → "${cleanAnswer}"`);
+      
+      return {
+        id: q.id,
+        q:  q.question_text,
+        correct:  cleanAnswer
+      };
+    });
+
+    console.log('✅ Formatted questions:', formattedQuestions);
+    return formattedQuestions;
+    
+  } catch (err) {
+    console.error('❌ Unexpected error:', err);
+    alert('Unexpected error:   ' + err.message);
+    return [];
   }
+}
 
   // Timer Functions
   function updateTimer() {
@@ -192,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 1000);
   }
 
-  // ✅ Show One Question at a Time
+  // Show One Question at a Time
   function showQuestion(index) {
     if (! questions || questions.length === 0) {
       console.error('Questions array is empty');
@@ -200,62 +173,63 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     currentQuestionIndex = index;
-    const qData = questions[index];
+    const questionData = questions[index];
     
-    console.log(`=== Showing Question ${index + 1} ===`);
+    // Get the fieldset
+    const fieldset = quizForm.querySelector('fieldset');
     
-    // Build question HTML with Next/Submit button
+    // Build question HTML
     let html = `
+      <legend class="sr-only">AP o TP Quiz</legend>
       <div class="quiz-question-card">
         <span class="question-number">${index + 1}.</span>
-        <span class="question-text">${qData.q}</span>
-        <div class="choices-group">`;
-    
-    if (! qData.choices || ! Array.isArray(qData.choices) || qData.choices.length === 0) {
-      console.error(`No choices found for question ${index + 1}`);
-      html += '<p style="color: red;">Error:  No choices available</p>';
-    } else {
-      for (let i = 0; i < qData.choices.length; i++) {
-        const choiceText = qData.choices[i];
-        const val = choiceText.charAt(0);
-        const checked = userAnswers[index] === val ?  'checked' : '';
-        
-        html += `
+        <span class="question-text">${questionData.q}</span>
+        <div class="tama-mali-group">
           <label>
-            <input type="radio" name="q${index + 1}" value="${val}" ${checked} required> 
-            ${choiceText}
-          </label>`;
-      }
-    }
+            <input type="radio" name="q${index + 1}" value="AP" ${userAnswers[index] === 'AP' ? 'checked' :  ''} required> 
+            AP
+          </label>
+          <label>
+            <input type="radio" name="q${index + 1}" value="TP" ${userAnswers[index] === 'TP' ? 'checked' : ''}> 
+            TP
+          </label>
+        </div>
+      </div>
+    `;
     
-    html += `</div></div>`;
-    
-    // ✅ Add NEXT button (no previous button)
+    // Add navigation buttons (NEXT ONLY, NO PREVIOUS)
     html += '<div class="nav-btns">';
     
+    // ✅ Only show Next button if not on last question
     if (index < questions.length - 1) {
-      html += '<button type="button" class="next-btn" id="next-btn-dynamic">Next →</button>';
-    } else {
-      html += '<button type="submit" class="submit-btn">Isumite ang Sagot</button>';
+      html += '<button type="button" class="nav-btn next-btn" id="next-btn-dynamic">Next →</button>';
     }
     
     html += '</div>';
     
-    questionArea.innerHTML = html;
+    // Add submit button on last question
+    if (index === questions.length - 1) {
+      html += '<button type="submit" class="submit-btn">Isumite ang Sagot</button>';
+    }
     
-    // Add event listeners
-    const radios = questionArea.querySelectorAll('input[type="radio"]');
+    fieldset.innerHTML = html;
+    
+    // Add event listeners for radio buttons
+    const radios = fieldset.querySelectorAll('input[type="radio"]');
     const nextBtn = document.getElementById('next-btn-dynamic');
     
-    const isAnswered = userAnswers[index] !== '';
+    // ✅ Check if question is already answered
+    const isAnswered = userAnswers[index] !== null && userAnswers[index] !== undefined;
     
+    // Disable next button until answered (unless already answered)
     if (nextBtn) {
       nextBtn.disabled = !isAnswered;
       console.log(`Question ${index + 1}:  Next button ${isAnswered ? 'enabled' : 'disabled'}`);
     }
     
+    // ✅ Add change event listeners to radio buttons
     radios.forEach(radio => {
-      radio.addEventListener('change', () => {
+      radio. addEventListener('change', () => {
         console.log(`Question ${index + 1}: Selected ${radio.value}`);
         userAnswers[index] = radio. value;
         
@@ -266,20 +240,21 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
     
-    // Next button handler
+    // Next button click handler
     if (nextBtn) {
       nextBtn.onclick = () => {
         console.log(`Next button clicked on question ${index + 1}`);
         
-        const selected = questionArea.querySelector('input[type="radio"]:checked');
+        const selected = fieldset.querySelector('input[type="radio"]:checked');
         
         if (! selected) {
-          console.log('No answer selected');
+          console.log('No answer selected, disabling next button');
           nextBtn.disabled = true;
           return;
         }
         
-        userAnswers[index] = selected. value;
+        // Save the answer
+        userAnswers[index] = selected.value;
         console.log(`Answer saved: ${selected.value}`);
         
         if (currentQuestionIndex < questions.length - 1) {
@@ -290,66 +265,55 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // ✅ Proceed Button - Stops Video & Loads Quiz
-  if (proceedBtn) {
-    proceedBtn.onclick = async function() {
-      console.log('📹 Proceeding from video to quiz...');
-      proceedBtn.disabled = true;
-      proceedBtn.textContent = 'Loading...';
+  // Start Quiz Button
+  if (startBtn) {
+    startBtn.onclick = async function() {
+      console.log('🚀 Starting quiz...');
+      startBtn.disabled = true;
       
-      // ✅ STOP VIDEO
-      const videoElement = videoSection.querySelector('video');
-      const iframeElement = videoSection.querySelector('iframe');
-      
-      if (videoElement) {
-        videoElement.pause();
-        videoElement.currentTime = 0;
-        console.log('🛑 Video stopped');
-      }
-      
-      if (iframeElement) {
-        const currentSrc = iframeElement.src;
-        iframeElement.src = '';
-        setTimeout(() => { iframeElement. src = currentSrc; }, 100);
-        console.log('🛑 Iframe video stopped');
-      }
-      
-      // ✅ Fetch questions
+      // ✅ Fetch questions from Supabase
       questions = await fetchQuestionsFromSupabase();
       
       if (questions.length === 0) {
         alert('No questions found. Please check your database.');
-        proceedBtn.disabled = false;
-        proceedBtn. textContent = 'Proceed to Quiz';
+        startBtn.disabled = false;
         return;
       }
       
-      userAnswers = Array(questions.length).fill('');
+      // Initialize user answers array
+      userAnswers = Array(questions.length).fill(null);
       currentQuestionIndex = 0;
       
-      // Hide video, show quiz
-      videoSection.style.display = 'none';
-      quizDirections. style.display = 'block';
-      timerDisplay.style. display = 'block';
+      // Hide start button
+      startBtn.style. display = 'none';
+      
+      // Show quiz container
       quizContainer.style.display = 'block';
       
-      // Disable back button
+      // ✅ Disable header back button during quiz
       if (headerBackBtn) {
         headerBackBtn.disabled = true;
-        headerBackBtn. style.opacity = '0.5';
+        headerBackBtn.style. opacity = '0.5';
         headerBackBtn.style.cursor = 'not-allowed';
         headerBackBtn.onclick = (e) => {
           e.preventDefault();
-          alert('Hindi ka maaaring bumalik sa video!  Kailangan mong makinig nang mabuti sa una.');
+          alert('Hindi ka maaaring bumalik habang nagsasagot ng quiz!');
           return false;
         };
-        console.log('🔒 Back button disabled');
+        console.log('🔒 Header back button disabled');
       }
       
+      // Start timer
       startTimer();
+      
+      // Show first question
       showQuestion(0);
+      
+      // Scroll to quiz
       quizContainer.scrollIntoView({ behavior: 'smooth' });
     };
+  } else {
+    console.error('❌ Start button not found! ');
   }
 
   // Submit Quiz
@@ -358,14 +322,16 @@ document.addEventListener('DOMContentLoaded', function() {
     
     clearInterval(timerInterval);
     
+    // Check for unanswered questions
     let unanswered = [];
-    for (let i = 0; i < questions.length; i++) {
+    for (let i = 0; i < questions. length; i++) {
       if (! userAnswers[i]) {
         unanswered.push(i + 1);
       }
     }
     
-    if (unanswered.length > 0 && ! timeUp) {
+    // If there are unanswered questions and time is not up
+    if (unanswered.length > 0 && !timeUp) {
       resultDisplay.innerHTML = `
         <strong style="color: #dc3545;">⚠️ May hindi ka pa nasasagutang tanong:  </strong><br>
         Tanong #${unanswered.join(', #')}
@@ -375,15 +341,17 @@ document.addEventListener('DOMContentLoaded', function() {
       return;
     }
     
+    // Calculate score
     let score = 0;
     for (let i = 0; i < questions.length; i++) {
-      if (userAnswers[i] === questions[i].correct_answer) {
+      if (userAnswers[i] === questions[i].correct) {
         score++;
       }
     }
     
     const percentage = ((score / questions.length) * 100).toFixed(2);
     
+    // Display result
     let message = `Iyong puntos:  ${score} / ${questions.length} (${percentage}%)`;
     
     if (score === questions.length) {
@@ -398,32 +366,40 @@ document.addEventListener('DOMContentLoaded', function() {
     
     resultDisplay.innerHTML = message;
     
+    // ✅ Re-enable header back button after quiz
     if (headerBackBtn) {
       headerBackBtn.disabled = false;
       headerBackBtn.style.opacity = '1';
-      headerBackBtn.style.cursor = 'pointer';
+      headerBackBtn.style. cursor = 'pointer';
       headerBackBtn.onclick = () => window.history.back();
-      console.log('🔓 Back button re-enabled');
+      console.log('🔓 Header back button re-enabled');
     }
     
+    // === SAVE TO SUPABASE ===
     if (currentUser) {
       console.log('💾 Saving quiz result for:', currentUser.email);
       
       const quizData = {
         user_email: currentUser.email,
-        aralin:  2,
-        gawain: 2,
+        aralin:  3,
+        gawain:  2,
         score: score,
         total_questions: questions.length,
-        quiz_name: 'Improvised Water Filter',
+        quiz_name: 'Hibla ng Alaala',
         date_taken: new Date().toISOString()
       };
       
+      console.log('=== DATA TO SAVE ===', quizData);
+      
       try {
-        const { data, error } = await supaQuizP2
+        const { data, error } = await supaQuizP3Q2
           .from('quiz_results')
           .insert(quizData)
           .select();
+        
+        console.log('=== SAVE RESULT ===');
+        console.log('Data:', data);
+        console.log('Error:', error);
         
         if (error) {
           console.error('❌ Error saving:', error);
@@ -437,20 +413,25 @@ document.addEventListener('DOMContentLoaded', function() {
         resultDisplay.innerHTML += '<br><small style="color: orange;">⚠️ May error sa pag-save. </small>';
       }
     } else {
-      resultDisplay.innerHTML += '<br><small style="color: orange;">⚠️ Hindi ka naka-login. Hindi na-save ang resulta.</small>';
+      console.log('⚠️ No user logged in');
+      resultDisplay.innerHTML += '<br><small style="color:  orange;">⚠️ Hindi ka naka-login.  Hindi na-save ang resulta.</small>';
     }
     
+    // Hide form
     quizForm.style.display = 'none';
-    questionArea.querySelectorAll('input[type="radio"]').forEach(r => r.disabled = true);
   }
 
+  // Attach submit handler
   if (quizForm) {
     quizForm.onsubmit = async function(e) {
       e.preventDefault();
       await submitQuiz();
     };
+  } else {
+    console.error('❌ Quiz form not found! ');
   }
 
+  // Run auth check
   checkAuth();
 
-});
+}); // ✅ End of DOMContentLoaded
