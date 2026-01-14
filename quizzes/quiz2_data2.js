@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Global Variables
   let currentUser = null;
-  let timer = 5 * 60;
+  let timer = 4 * 60;
   let timerInterval = null;
   let timeUp = false;
   let currentQuestionIndex = 0;
@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function startTimer() {
     console.log('⏱️ Timer started');
-    timer = 5 * 60;
+    timer = 4 * 60;
     timeUp = false;
     
     // Make sure timer is visible
