@@ -27,8 +27,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Global Variables
   let currentUser = null;
-  let timer = 2 * 60;
-  let timerInterval = null;
+  let timer = 5 * 60;
+  let Interval = null;
   let timeUp = false;
   let currentQuestionIndex = 0;
   let userAnswers = [];
@@ -137,16 +137,16 @@ async function fetchQuestionsFromSupabase() {
   }
 }
 
-  // ✅ Timer Functions - DEFINE BEFORE startTimer()
-  function updateTimer() {
-    const minutes = String(Math.floor(timer / 60)).padStart(2, '0');
-    const seconds = String(timer % 60).padStart(2, '0');
-    timerDisplay.textContent = `Time left: ${minutes}:${seconds}`;
+  // ✅  Functions - DEFINE BEFORE start()
+  function update() {
+    const minutes = String(Math.floor( / 60)).padStart(2, '0');
+    const seconds = String( % 60).padStart(2, '0');
+    Display.textContent = `Time left: ${minutes}:${seconds}`;
   }
 
-  function startTimer() {
-    console.log('⏱️ Timer started');
-    timer = 2 * 60;
+  function start() {
+    console.log('⏱️  started');
+     = 5 * 60;
     timeUp = false;
     
     // Make sure timer is visible
