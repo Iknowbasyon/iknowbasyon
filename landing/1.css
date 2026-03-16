@@ -3,16 +3,20 @@
 
 body {
   font-family: 'Segoe UI', Arial, sans-serif;
-  background: white;
-  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  max-width: 100%;
+  height: auto;
   color: #222;
   justify-content: center;
   align-items: center;
+  background-image: url(/iknowbasyon/image/fade.svg);
 }
+
 
 /* Header */
 header {
-  background: #0C2B4E ;
+  background: #1e3d8f;
   color: black;
   height: 80px;
   display: flex;
@@ -24,22 +28,34 @@ header {
   z-index: 1002;
   margin-bottom: 0;
   padding-bottom: 0;
+  border-bottom: 15px solid yellow; 
 }
 
-.header-title {
+.logo-wrapper {
+  /* Let it take space in the layout */
+  height: auto;
+  overflow: visible;
+
+  /* Center it */
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 16px;
-  font-size: 2em;
-  font-weight: 700;
-  margin-left: 0;
+  width: 100%;
+
+  /* === MOVE IT DOWN FROM HERE === */
+  margin-top: 50px;        /* ↑ increase = more space from header */
+  margin-bottom: 0px;       /* ↑ increase = more space before description box */
 }
 
 .headerLogo {
-  display: block;
-  margin: 8px auto 18px auto;
-  max-width: 500px;
-  width: 100%;
+  /* Remove any overlay/absolute positioning */
+  position: static;
+  top: auto;
+  left: auto;
+  transform: none;
+  /* Size */
+  max-width: 60vw;
+  width: auto;
   height: auto;
 }
 
@@ -68,7 +84,7 @@ header {
 .menu-btn span {
   width: 100%;
   height: 5px;
-  background: #EFECE3;
+  background: yellow;
   border-radius: 3px;
   transition: 0.3s;
 }
@@ -83,7 +99,7 @@ header {
   left: 0;
   width: 270px;
   height: 100vh;
-  background: #0C2B4E ;
+  background: #1e3d8f;
   padding-top: 100px;
   transform: translateX(-100%);
   transition: transform 0.3s;
@@ -140,6 +156,7 @@ header {
   padding-bottom: 32px;
   padding-right: 24px;
 }
+
 #logout-btn {
   width: auto;
   padding: 13px 30px;
@@ -195,7 +212,7 @@ header {
 .dropdown-btn.active .dropdown-arrow,
 .sub-dropdown-btn.active .dropdown-arrow {
   transform: rotate(90deg);
-  color: #0C2B4E ;
+  color: #0C2B4E;
 }
 
 .dropdown-list {
@@ -245,19 +262,8 @@ header {
 }
 
 /* Logout button */
-.logout-li {
-  margin-top: auto;
-  position: static;
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding-bottom: 32px;
-  padding-right: 24px;
-}
-
 #logout-btn {
-  background: #0C2B4E ;
+  background: #0C2B4E;
   color: #fff;
   border-radius: 30px;
   padding: 13px 30px;
@@ -285,112 +291,139 @@ header {
   transition: opacity 0.3s;
 }
 
-/* Main Content */
+/* Main Content — fixed top margin so logo never shifts it */
 main {
-  margin-left: 0;
   padding: 40px 0;
   min-height: 80vh;
   background: none;
-  max-width: 1100px;
-  margin: 40px auto 0 auto;
-  border-radius: 14px;
+  max-width: none;              /* was 1100px — this was limiting everything */
+  width: 100%;                  /* allow full width */
+  margin: 10px auto 0 auto;
+  border-radius: 0;             /* remove radius for edge-to-edge feel */
 }
 
 .page-section {
   animation: fadeIn 0.5s;
 }
 
-/* --- DESCRIPTION BOXES FINAL FIXED --- */
+/* ============================================================
+   DESCRIPTION BOXES — Maximum Width with Borders Visible
+   ============================================================ */
+
 .custom-description-outer {
-  margin: 48px auto 0 auto;
-  max-width: 650px;
-  background: #fff;
-  border-top: 10px solid #09272b;
-  border-bottom: 10px solid #09272b;
-  border-left: 10px solid #09272b;
-  border-right: 10px solid #09272b;
+  margin: 10px auto 0 auto;
+  max-width: none;
+  width: 99%;                    /* wider — nearly edge-to-edge */
+  background: rgba(255, 255, 255, 0.5);
+  border: 10px solid #1e3d8f;
   border-radius: 18px;
-  box-shadow: 0 2px 18px rgba(0,218,239,0.13);
+  box-shadow: 0 2px 18px rgba(0, 218, 239, 0.13);
   padding: 0 0 32px 0;
   position: relative;
   text-align: left;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  box-sizing: border-box;
 }
 
 .custom-description-title {
   font-family: 'Segoe UI', Arial, sans-serif;
-  font-size: 2rem;
+  font-size: 1.7rem;
   font-weight: 700;
   color: #222;
   background: none;
-  padding: 32px 0 16px 32px;
+  padding: 28px 40px 14px 40px;
   margin-bottom: 0;
   text-align: left;
+  width: 99%;                      /* wider */
+  max-width: none;
+  box-sizing: border-box;
 }
 
 .custom-description-inner {
-  margin: 16px auto 0 auto;
-  background: #fff;
-  border: 4px solid #00daef;
+  margin: 12px auto 0 auto;
+  background: rgba(255, 255, 255, 0.5);
+  border: 4px solid yellow;
   border-radius: 14px;
   color: #222;
-  font-size: 1.2rem;
-  padding: 28px 38px;
-  max-width: 600px;
+  font-size: 1.5rem;
+  line-height: 1.85;
+  padding: 24px 40px;
+  width: 97%;                    /* wider — nearly fills outer */
+  max-width: none;
   text-align: justify;
-  box-shadow: 0 2px 12px rgba(42,130,217,0.09);
+  box-shadow: 0 2px 12px rgba(42, 130, 217, 0.09);
   font-family: 'Segoe UI', Arial, sans-serif;
-  text-indent: 40px;
-}
-
-.indent {
-  text-indent: 40px;
-}
-
-
-.custom-description-inner p:nth-of-type(-n+3) {
-  text-indent: 40px;
+  word-break: break-word;
+  box-sizing: border-box;
 }
 
 .description-outer {
-  margin: 48px auto 0 auto;
-  max-width: 650px;
-  background: #fff;
-  border-top: 10px solid #09272b;
-  border-bottom: 10px solid #09272b;
-  border-left: 10px solid #09272b;
-  border-right: 10px solid #09272b;
+  margin: 10px auto 0 auto;
+  max-width: none;
+  width: 99%;                    /* wider */
+  background: white;
+  border: 10px solid #1e3d8f;
   border-radius: 18px;
-  box-shadow: 0 2px 18px rgba(0,218,239,0.13);
+  box-shadow: 0 2px 18px rgba(0, 218, 239, 0.13);
   padding: 0 0 32px 0;
   position: relative;
   text-align: left;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;;
+  align-items: center;
+  box-sizing: border-box;
 }
 
-/* Responsive adjustments for custom description */
-@media (max-width: 700px) {
-  .custom-description-outer {
-    max-width: 97vw;
-    padding-bottom: 16px;
-    padding-left: 0;
-    align-items: stretch;
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 900px) {
+  .custom-description-outer,
+  .description-outer {
+    width: 98%;
   }
-  .custom-description-title {
-    font-size: 1.4rem;
-    padding: 20px 0 8px 5vw;
-  }
+
   .custom-description-inner {
-    font-size: 1rem;
-    max-width: 90vw;
-    padding: 16px 6vw;
-    margin-left: 5vw;
-    text-indent: 40px;
-    margin-right: 5vw;
+    width: 98%;
+    padding: 20px 28px;
+  }
+
+  .custom-description-title {
+    font-size: 1.6rem;
+    padding: 22px 28px 12px 28px;
+    width: 98%;
+  }
+}
+
+@media (max-width: 700px) {
+  .custom-description-outer,
+  .description-outer {
+    width: 99%;
+    padding-bottom: 16px;
+    border-width: 6px;
+    border-radius: 12px;
+  }
+
+  .custom-description-title {
+    font-size: 1.3rem;
+    padding: 18px 5vw 10px 5vw;
+    width: 96%;
+  }
+
+  .custom-description-inner {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    width: 97%;
+    padding: 16px 5vw;
+  }
+
+  .custom-description-inner p {
+    font-size: 0.95rem;
+    line-height: 1.75;
   }
 }
 /* Simple Fade Animations */
@@ -399,15 +432,15 @@ main {
   to { opacity: 1; }
 }
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(24px);}
-  to { opacity: 1; transform: translateY(0);}
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .custom-description-inner p {
   text-indent: 0;
   margin-bottom: 1.2em;
 }
-.custom-description-inner p:nth-of-type(-n+2) {
+.custom-description-inner p:nth-of-type(-n+3) {
   text-indent: 40px;
 }
 
@@ -422,18 +455,18 @@ main {
 
 /* Modal styles */
 .modal {
-  display: none; 
-  position: fixed; 
-  z-index: 99; 
+  display: none;
+  position: fixed;
+  z-index: 99;
   left: 0; top: 0;
   width: 100vw; height: 100vh;
-  overflow: auto; 
-  background: rgba(0,0,0,0.4); 
+  overflow: auto;
+  background: rgba(0,0,0,0.4);
 }
 
 .modal-content {
   background: #fff;
-  margin: 12% auto; 
+  margin: 12% auto;
   padding: 2rem 2rem 1.5rem;
   border-radius: 10px;
   width: 90%; max-width: 340px;
@@ -450,11 +483,13 @@ main {
 
 .close-btn:hover { color: #1976d2; }
 .modal-content h2 { margin-top: 0; }
+
 #passwordInput {
   width: 80%; padding: 8px; margin: 1rem 0 0.5rem 0;
   border-radius: 5px; border: 1px solid #ccc;
   font-size: 1rem; text-align: center;
 }
+
 #submitPassword {
   padding: 8px 24px; border: none; border-radius: 5px;
   background: linear-gradient(90deg,#1976d2 65%, #00daef 100%);
@@ -464,62 +499,62 @@ main {
 #submitPassword:hover {
   background: linear-gradient(90deg,#00daef 65%, #1976d2 100%);
 }
+
 .error {
   color: #c00; font-size: 0.95em; margin-top: 0.5rem; min-height: 1.3em;
 }
 
-/* May-likha Section Layout: Add Image Beside Content */
+/* May-likha Section */
 #May-likha .description-outer {
-  display: flex; /* Flexbox layout for side-by-side design */
-  align-items: flex-start; /* Align image and content at the top */
-  gap: 5px; /* Space between the image and the description */
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
 }
 
 #May-likha img.about-image {
-  display: block; /* Ensure the image doesn't flow inline */
-  margin: 0 auto 20px; /* Add margin below the image */
-  width: 200px; /* Set fixed width */
-  height: auto; /* Maintain aspect ratio */
-  border-radius: 12px; /* Rounded corners for aesthetics */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+  display: block;
+  margin: 0 auto 20px;
+  width: 200px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 #May-likha .custom-description-inner {
-  margin-top: 20px; /* Add additional spacing */
-  text-align: justify; /* Neat text alignment */
-  font-size: 1.2rem; /* Keep text readable */
+  margin-top: 20px;
+  text-align: justify;
+  font-size: 1.2rem;
 }
 
-/* Responsive Design for Smaller Screens */
 @media (max-width: 700px) {
   #May-likha .description-outer {
-    flex-direction: column; /* Stack the image and content vertically */
-    align-items: center; /* Center-align the image and content */
+    flex-direction: column;
+    align-items: center;
   }
 
   #May-likha img.about-image {
-    width: 80%; /* Image adjusts to 80% width for smaller screens */
-    margin-bottom: 15px; /* Add space below the image */
+    width: 80%;
+    margin-bottom: 15px;
   }
 
   #May-likha .custom-description-inner {
-    text-align: justify; /* Ensure the text looks neat when stacked */
+    text-align: justify;
   }
 }
 
-/* Mga Paalala Section - All Paragraphs Indented */
+/* Mga Paalala Section */
 #reminder .custom-description-inner p {
-  text-indent: 40px; /* All paragraphs indented by default */
+  text-indent: 40px;
   margin-bottom: 1.2em;
   text-align: justify;
 }
 
-/* Mobile responsive indentation */
 @media (max-width: 700px) {
   #reminder .custom-description-inner p {
-    text-indent: 30px; /* Slightly smaller indent on mobile */
+    text-indent: 30px;
   }
 }
+
 /* ========================================
    ADMIN PANEL STYLES
    ======================================== */
@@ -527,7 +562,7 @@ main {
 .aralin-toggle-container {
   display: grid;
   gap: 1.5rem;
-  margin:  2rem 0;
+  margin: 2rem 0;
 }
 
 .aralin-toggle-card {
@@ -559,13 +594,8 @@ main {
   margin: 0;
 }
 
-.aralin-status.unlocked {
-  color: #2e7d32;
-}
-
-.aralin-status.locked {
-  color: #c62828;
-}
+.aralin-status.unlocked { color: #2e7d32; }
+.aralin-status.locked { color: #c62828; }
 
 .aralin-toggle-actions {
   display: flex;
@@ -587,7 +617,6 @@ main {
   background: linear-gradient(90deg, #4caf50 0%, #66bb6a 100%);
   color: white;
 }
-
 .unlock-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
@@ -597,7 +626,6 @@ main {
   background: linear-gradient(90deg, #dc3545 0%, #e57373 100%);
   color: white;
 }
-
 .lock-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
@@ -608,8 +636,8 @@ main {
   margin: 2rem 0;
   padding: 1.5rem;
   background: #fff3cd;
-  border:  2px solid #ffc107;
-  border-radius:  15px;
+  border: 2px solid #ffc107;
+  border-radius: 15px;
 }
 
 .bulk-btn-container {
@@ -620,21 +648,20 @@ main {
 
 .bulk-action-btn {
   width: 100%;
-  padding:  1. 2rem;
+  padding: 1.2rem;
   border: none;
   border-radius: 12px;
-  font-size:  1.1rem;
+  font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s;
-  box-shadow:  0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .unlock-all-btn {
   background: linear-gradient(90deg, #1976d2 0%, #00daef 100%);
   color: white;
 }
-
 .unlock-all-btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(25, 118, 210, 0.4);
@@ -644,7 +671,6 @@ main {
   background: linear-gradient(90deg, #dc3545 0%, #c62828 100%);
   color: white;
 }
-
 .lock-all-btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4);
@@ -667,16 +693,14 @@ main {
   color: #2e7d32;
   border: 2px solid #4caf50;
 }
-
 .admin-status-message.error {
   background: #ffcdd2;
   color: #c62828;
-  border:  2px solid #dc3545;
+  border: 2px solid #dc3545;
 }
-
 .admin-status-message.loading {
   background: #e0f7fa;
-  color:  #0C2B4E;
+  color: #0C2B4E;
   border: 2px solid #00daef;
 }
 
@@ -686,11 +710,11 @@ main {
   padding: 2rem;
   background: #f8fbff;
   border: 2px solid #e0f7fa;
-  border-radius:  15px;
+  border-radius: 15px;
 }
 
 .password-grid {
-  display:  grid;
+  display: grid;
   gap: 1.5rem;
 }
 
@@ -700,7 +724,7 @@ main {
   gap: 1rem;
   padding: 1rem;
   background: white;
-  border:  2px solid #00daef;
+  border: 2px solid #00daef;
   border-radius: 10px;
 }
 
@@ -708,15 +732,15 @@ main {
   min-width: 150px;
   font-weight: 600;
   color: #0C2B4E;
-  margin:  0;
+  margin: 0;
 }
 
 .password-item input {
   flex: 1;
-  padding:  0.75rem;
+  padding: 0.75rem;
   border: 2px solid #e0f7fa;
   border-radius: 8px;
-  font-size:  1rem;
+  font-size: 1rem;
   transition: all 0.3s;
 }
 
@@ -730,14 +754,13 @@ main {
   padding: 0.75rem 1.5rem;
   background: linear-gradient(90deg, #1976d2 0%, #00daef 100%);
   color: white;
-  border:  none;
-  border-radius:  8px;
+  border: none;
+  border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s;
   box-shadow: 0 2px 8px rgba(25, 118, 210, 0.2);
 }
-
 .update-pass-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(25, 118, 210, 0.4);
